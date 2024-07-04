@@ -6,8 +6,8 @@ function parallax(e) {
         var p = document.getElementById("texto");
         const speed = star.getAttribute("data-speed");
         let x,y;
-        x = ((window.innerWidth/2)-e.pageX)/10*speed;
-        y = ((window.innerHeight/2)-e.pageY)/10*speed;
+        x = ((window.innerWidth/2)-e.pageX)/(10*speed);
+        y = ((window.innerHeight/2)-e.pageY)/(10*speed);
         p.innerText = `Width: ${window.innerWidth}, Height: ${window.innerHeight}\nmX: ${e.pageX}, mY: ${e.pageY}`;
         star.style.transform = `translateX(${x}px) translateY(${y}px)`;
     });
