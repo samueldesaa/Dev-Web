@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Funções de Cálculo</title>
+</head>
+<body>
+    <div>
+        <div id="imc">
+            <h1>IMC</h1>
+            <input placeholder="metros" type="number" id="metros" step="0.01">
+            <input placeholder="peso" type="number" id="peso" step="0.1">
+            <br>
+            <button onclick="calculaIMC()">Calcular</button>
+        </div>
+        <div id="fatorial">
+            <h1>Fatorial</h1>
+            <input type="number" step="1" placeholder="número">
+            <br>
+            <button onclick="fatorial()">Calcular</button>
+        </div>
+    </div>
+    <div>
+        <div id="conversor">
+            <h1>Conversor de dólar para reais</h1>
+            <input type="number" step="0.01" placeholder="dólar">
+            <br>
+            <button onclick="converter()">Converter</button>
+        </div>
+        <div id="salaRet">
+            <h1>Área e Perímetro<br>Sala Retangular</h1>
+            <input type="number" placeholder="altura">
+            <input type="number" placeholder="largura">
+            <br>
+            <button onclick="retangular()">Calcular</button>
+        </div>
+    </div>
+    <div>
+        <div id="salaCirc">
+            <h1>Área e Perímetro<br>Sala Circular</h1>
+            <input type="number" placeholder="raio">
+            <br>
+            <button onclick="circular()">Calcular</button>
+        </div>
+        <div id="tabuada">
+            <h1>Tabuada</h1>
+            <input type="number" placeholder="número">
+            <br>
+            <button onclick="tabuada()">Calcular</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
