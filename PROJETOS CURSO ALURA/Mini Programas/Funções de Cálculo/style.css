@@ -1,33 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Margarine&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 body{
-    font-family: "Margarine";
+    background-color: #D8EEFF;
+    font-family: "Anton";
     margin: 0px;
 }
 body>div{
-    background-color: lightpink;
     margin: 15px auto 10px auto;
     width: 100%;
     height: 30vh;
     display: flex;
     justify-content: center; 
 }
+div>div:hover{
+    filter: drop-shadow(10px 10px 5px #AA9069) drop-shadow(0px 0px 10px #396180);
+    transform: scale(105%);
+    transition: 0.5s ease-in-out;
+}
+
 div>div{
-    background-color: aqua;
+    background-color: #FFF0D9;
     width: 40%;
     margin:  0 5% 0 5%;
     text-align: center;
+    color: #553D18;
+    filter: drop-shadow(10px 10px 0px #AA9069) drop-shadow(0px 0px 0px #396180);
+    /* border: 3px solid #AA9069; */
+    border-radius: 30px 5px 60px 10px;
 }
 h1{
-    font-size: 120%;
-    margin-bottom: 10%;
+    font-size: 200%;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    /* background-color: blueviolet; */
 }
 input{
     width: 40%;
     height: 10%;
     margin: 0 5px 10px 5px;
+    border-radius: 4px;
+    border-color: #AA9069;
 }
-textarea{
-    width: 50%;
+
+button:hover{
+    filter: drop-shadow(0 0 2px #86A6BF);
+    transform: scale(105%);
+}
+button{
+    border: 2px solid #3961806b;
+    border-radius: 2px;
+    background-color: white;
+    color: #396180;
 }
 
 #imc>button{
