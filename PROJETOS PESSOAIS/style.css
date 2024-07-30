@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+* {
+    font-family: "Anton";
+}
+
+body {
+    text-align: center;
+}
+
+.dias {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+
+.card{
+    height: 70vh;
+}
+.card:hover p{
+    transform: scale(1.8);
+    transition: 2s ease;
+}
+.card {
+    width: 50%;
+    border-radius: 20px;
+    background-image: -webkit-linear-gradient(bottom, transparent, #57b8a1);
+}
+.card:nth-child(2) {
+    background-image: -webkit-linear-gradient(bottom, transparent, #e66767);
+}
+h1{
+    font-size: 5vw;
+    margin: -1% 0 0 0;
+    letter-spacing: 0.4vw;
+    padding: 20px 0 0 0;
+    filter: drop-shadow(5px 5px 0 rgba(69, 69, 69, 0.086));
+    background-image: -webkit-linear-gradient(bottom, #ffb49b 20%, #00988d, #2c6b74, #013750);
+    background-clip: text;
+    color: transparent;
+}
+
+h2{
+    font-size: 4vw;
+}
+.card p {
+    margin-top: 10%;
+    font-size: 10vw;
+}
+
+#obs{
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
