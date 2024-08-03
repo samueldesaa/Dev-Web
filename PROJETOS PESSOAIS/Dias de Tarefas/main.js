@@ -10,7 +10,7 @@ aguaP.innerText = agua;
 if(agua != "SIM"){
     aguaP.style.backgroundImage = "linear-gradient(to top, transparent, red)";
 }else{
-    aguaP.style.backgroundImage = "linear-gradient(bottom, transparent, #57b8a1)";
+    aguaP.style.backgroundImage = "linear-gradient(to bottom, transparent, #57b8a1)";
 }
 aguaP.style.backgroundClip = "text"
 aguaP.style.color = "transparent"
@@ -31,7 +31,7 @@ lixoP.innerText = lixo;
 if(lixo != "SIM"){
     lixoP.style.backgroundImage = "linear-gradient(to top, transparent, red)";
 }else{
-    lixoP.style.backgroundImage = "linear-gradient(bottom, transparent, #57b8a1)";
+    lixoP.style.backgroundImage = "linear-gradient(to bottom, transparent, #57b8a1)";
 }
 lixoP.style.backgroundClip = "text"
 lixoP.style.color = "transparent"
