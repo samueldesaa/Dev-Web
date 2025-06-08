@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirecionamento</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: radial-gradient(circle at top left, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+        header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Background desfocado */
+        .blurred-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            filter: blur(20px);
+            z-index: -2;
+            transition: background-image 1.5s ease-in-out;
+        }
+
+        /* Container dos slides principais */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 0;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        /* Overlay */
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 2;
+        }
+
+        #startButton {
+    position: fixed;
+    top: 30px;
+    left: 20px;
+    transform: scale(1.2);
+    width: 40vw;
+    max-width: 200px;
+    background-color: transparent;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    z-index: 3;
+    transition: transform 0.3s ease;
+    user-select: none;
+}
+
+#startButton img {
+    width: 100%;
+    max-width: 120px;
+    opacity: 0.8;
+    border-radius: 10%;
+}
+
+#startButton:hover {
+    transform: scale(1.3);
+}
+
+/* Botão roxo com gradiente no canto inferior direito */
+#donateButton {
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    padding: 0.7em 1.2em;
+    background: linear-gradient(45deg, #6a0dad, #a94fe3);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    text-decoration: none;
+    z-index: 999;
+    box-shadow: 0 0 10px rgba(170, 84, 255, 0.7);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+#donateButton:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(170, 84, 255, 1);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    #startButton {
+        width: 45vw;
+        transform: scale(1);
+    }
+
+    #startButton:hover {
+        transform: scale(1.1);
+    }
+
+    #donateButton {
+        font-size: 0.9rem;
+        padding: 0.6em 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    #startButton {
+        width: 50vw;
+    }
+
+    #donateButton {
+        font-size: 0.8rem;
+        padding: 0.5em 0.8em;
+    }
+}
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <!-- BACKGROUND DESFOCADO -->
+        <div class="blurred-background" id="blurredBackground"></div>
+
+        <!-- SLIDES -->
+        <div class="slide active" style="background-image: url('Fotos Team Two/1.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/2.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/3.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/4.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/5.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/6.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/7.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/8.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/9.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/10.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/11.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/12.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/13.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/14.jpg');"></div>
+        <div class="slide" style="background-image: url('Fotos Team Two/15.jpg');"></div>
+
+        <!-- Botão central de redirecionamento -->
+        <button id="startButton">
+            <img src="Team Two.png" alt="">
+        </button>
+    </header>
+
+    <!-- Botão flutuante roxo -->
+    <a href="vaquinha.html" id="donateButton">Apoie a Vaquinha</a>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const blurredBg = document.getElementById('blurredBackground');
+        let current = 0;
+        const total = slides.length;
+        const intervalTime = 3000;
+
+        function updateBlurredBackground(index) {
+            const bg = slides[index].style.backgroundImage;
+            blurredBg.style.backgroundImage = bg;
+        }
+
+        function nextSlide() {
+            slides[current].classList.remove('active');
+            current = (current + 1) % total;
+            slides[current].classList.add('active');
+            updateBlurredBackground(current);
+        }
+
+        updateBlurredBackground(current);
+        let slideInterval = setInterval(nextSlide, intervalTime);
+
+        const startButton = document.getElementById('startButton');
+        startButton.onclick = () => {
+            window.location.href = 'vaquinha.html';
+        };
+    </script>
+</body>
+
+</html>
