@@ -1,123 +1,48 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
-  <title>Roleta Brindes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brindes Team Two</title>
   <link rel="shortcut icon" href="Team Two.png" type="image/x-icon">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: sans-serif;
-      text-align: center;
-      background: linear-gradient(135deg, #667eea, #764ba2);
       margin: 0;
-      padding: 30px 0 0 0;
-    }
-
-    canvas#wheel {
-      background: rgb(255, 255, 255);
-      filter: drop-shadow(0 0 10px cyan);
-      border: 8px solid #888;
-      border-radius: 50%;
-      margin-top: 20px;
-      width: 90vw;
-      max-width: 600px;
-      height: auto;
-      aspect-ratio: 1 / 1;
-    }
-
-    .wheel-container {
-  position: relative;
-  display: inline-block;
-}
-
-#spinBtn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #27ae60;
-  color: white;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  transition: background-color 0.3s ease;
-}
-
-#spinBtn:hover {
-  background-color: #219150;
-}
-
-
-    #modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      display: flex;
       justify-content: center;
       align-items: center;
-      padding: 1rem;
+      padding: 3rem 2rem;
     }
 
-    #modalContent {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-      max-width: 90%;
-      width: 400px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      animation: popIn 0.4s ease-out;
-    }
-
-    @keyframes popIn {
-      from {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    #modal img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 15px;
-    }
-
-    h1 {
-      color: white;
-      font-size: 3vw;
-      margin-bottom: 10px;
-      max-font-size: 32px;
-    }
-
-    #confetti {
-      position: fixed;
-      pointer-events: none;
-      top: 0;
-      left: 0;
+    .container {
+      background: #fff;
+      max-width: 900px;
       width: 100%;
-      height: 100%;
-      z-index: 1000;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      padding-bottom: 6rem;
     }
 
-    #backBtn {
+    .btn-back {
       position: absolute;
-      top: 1rem;
-      left: 1rem;
+      top: 1em;
+      left: 1em;
+      z-index: 999;
       background-color: #764ba2;
       color: #fff;
       border: none;
@@ -126,288 +51,167 @@
       font-weight: 600;
       font-size: 1rem;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(118, 75, 162, 0.5);
+      box-shadow: 0 4px 10px rgba(118,75,162,0.5);
       transition: background-color 0.3s ease;
     }
 
-    /* Responsividade */
-    @media (max-width: 600px) {
+    .btn-back:hover,
+    .btn-back:focus {
+      background-color: #5a3580;
+      outline: none;
+    }
 
+    .qr-group {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 700px;
+    }
 
-      #modalContent {
-        padding: 20px;
+    .qr-container {
+      background: #f5f5f5;
+      padding: 2rem;
+      border-radius: 24px;
+      box-shadow: 0 14px 40px rgba(118,75,162,0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 270px;
+      min-height: 350px;
+    }
+    .qr-container:hover{
+        transform: scale(1.1);
+    }
+
+    .qr-container h2 {
+      color: #764ba2;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .carousel img {
+      width: 200px;
+      height: 200px;
+      border-radius: 16px;
+      filter: drop-shadow(0 0 8px #764ba2);
+      object-fit: contain;
+    }
+
+    .qr-label {
+      margin-top: 1.2rem;
+      font-weight: 700;
+      color: #764ba2;
+      font-size: 1.15rem;
+      user-select: none;
+      text-align: center;
+    }
+
+    .btn-brindes {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #764ba2;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 1.2rem 3rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(118,75,162,0.6);
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .btn-brindes:hover,
+    .btn-brindes:focus {
+      background-color: #5a3580;
+      outline: none;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 1.5rem 1rem;
       }
 
-      h1 {
-        font-size: 7vw;
+      .container {
+        padding: 1.5rem 1rem 5rem;
       }
 
-      #backBtn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
+      .qr-group {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .qr-container {
+        width: 100%;
+        max-width: 250px;
+        padding: 1.5rem;
+      }
+
+      .btn-brindes {
+        font-size: 1.4rem;
+        padding: 1rem 2rem;
       }
     }
   </style>
-
 </head>
-
 <body>
-  <h1>🎯Ganhe seu brinde</h1>
-  <div class="wheel-container">
-    <canvas id="wheel" width="500" height="500"></canvas>
-    <button id="spinBtn">⟳</button>
-  </div>
-  
-  <button id="backBtn" onclick="location.href='vaquinha.html'">← Voltar</button>
 
-  <!-- Modal de resultado -->
-  <div id="modal">
-    <div id="modalContent">
-      <h2>🎉 Parabéns!</h2>
-      <img id="resultImg" src="" alt="Item">
-      <p>Você ganhou: <strong id="resultName"></strong></p>
+  <button class="btn-back" onclick="window.location.href='vaquinha.html'">← Voltar</button>
+
+  <div class="container">
+    <h1>🎁 Lista de Brindes</h1>
+    <h2>Clique nos brindes que deseja sortear</h2>
+
+    <div class="qr-group">
+      <div class="qr-container" onclick="window.location.href='roleta5reais.html'">
+        <h2>Brindes de 5 Reais</h2>
+        <div id="carousel-5" class="carousel"></div>
+      </div>
+
+      <div class="qr-container" onclick="window.location.href='roleta10reais.html'">
+        <h2>Brindes de 10 Reais</h2>
+        <div id="carousel-10" class="carousel"></div>
+      </div>
     </div>
   </div>
 
-  <!-- Confetti canvas -->
-  <canvas id="confetti"></canvas>
+  <!-- Importa os dados -->
+  <script src="listarImagens.js"></script>
 
-  <!-- Sons -->
-  <audio id="spinSound" src="Roda1.mp3" loop></audio>
-  <audio id="yaySound" src="Yay.mp3"></audio>
-
+  <!-- Carrosséis -->
   <script>
-    const canvas = document.getElementById("wheel");
-    const ctx = canvas.getContext("2d");
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = 230;
+    function criarCarrossel(containerId, lista) {
+      const container = document.getElementById(containerId);
+      let index = 0;
 
-    const items = [
-      { nome: "Espada Ouro", imagem: "Itens/Espada Ouro.png" },
-      { nome: "Machado Ouro", imagem: "Itens/Machado Ouro.png" },
-      { nome: "Picareta Ouro", imagem: "Itens/Picareta Ouro.png" },
-      { nome: "Raposa Laranja", imagem: "Itens/Raposa Laranja.png" },
-      { nome: "Raposa Rubi", imagem: "Itens/Raposa Rubi.png" },
-      { nome: "Raposa Branca", imagem: "Itens/Raposa Branca.png" },
-      { nome: "Yoshi Azul", imagem: "Itens/Yoshi Azul.png" },
-      { nome: "Yoshi Preto", imagem: "Itens/Yoshi Preto.png" },
-      { nome: "Yoshi Amarelo", imagem: "Itens/Yoshi Amarelo.png" },
-      { nome: "Yoshi Verde", imagem: "Itens/Yoshi Verde.png" },
-      { nome: "Pa Ouro", imagem: "Itens/Pa Ouro.png" }
-    ];
-
-    let loadedImages = 0;
-    items.forEach(item => {
-      const img = new Image();
-      img.src = item.imagem;
-      img.onload = () => {
-        loadedImages++;
-        if (loadedImages === items.length) {
-          drawWheel();
-        }
-      };
-      item.imgObj = img;
-    });
-
-    let rotation = 0;
-    let isSpinning = false;
-
-    // Sons
-    const spinSound = document.getElementById("spinSound");
-    const yaySound = document.getElementById("yaySound");
-
-    // Gera uma cor aleatória em formato hexadecimal
-    function getRandomPastelColor() {
-      function randomPastelValue() {
-        return Math.floor((Math.random() * 105) + 150); // 150 a 255
+      function renderItem() {
+        const item = lista[index];
+        container.innerHTML = `
+          <img src="${item.imagem}" alt="${item.nome}" />
+          <div class="qr-label">${item.nome}</div>
+        `;
       }
 
-      const r = randomPastelValue();
-      const g = randomPastelValue();
-      const b = randomPastelValue();
-
-      const toHex = (value) => value.toString(16).padStart(2, '0');
-
-      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+      renderItem();
+      setInterval(() => {
+        index = (index + 1) % lista.length;
+        renderItem();
+      }, 2000);
     }
 
-    const colors = items.map(() => getRandomPastelColor());
-
-    function drawWheel() {
-      const sliceAngle = (2 * Math.PI) / items.length;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const baseCount = 6;
-      const baseSize = 90;
-      const minSize = 40;
-      const baseDistanceFactor = 0.8;
-      const minDistanceFactor = 0.65;
-
-      const scaleFactor = Math.sqrt(baseCount / items.length);
-
-      const size = Math.max(minSize, baseSize * scaleFactor);
-      const distanceFactor = Math.max(minDistanceFactor, baseDistanceFactor * scaleFactor);
-
-      for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        const startAngle = i * sliceAngle + rotation;
-        const endAngle = startAngle + sliceAngle;
-
-        ctx.fillStyle = colors[i];
-        ctx.beginPath();
-        ctx.moveTo(centerX, centerY);
-        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-        ctx.closePath();
-        ctx.fill();
-
-        const angle = startAngle + sliceAngle / 2;
-        const imgX = centerX + Math.cos(angle) * radius * distanceFactor;
-        const imgY = centerY + Math.sin(angle) * radius * distanceFactor;
-
-        ctx.save();
-        ctx.translate(imgX, imgY);
-        ctx.rotate(0);
-        ctx.drawImage(item.imgObj, -size / 2, -size / 2, size, size);
-        ctx.restore();
-      }
-
-      ctx.fillStyle = "#706c00";
-      ctx.beginPath();
-      ctx.moveTo(centerX, centerY - radius + 10);
-      ctx.lineTo(centerX - 10, centerY - radius - 30);
-      ctx.lineTo(centerX + 10, centerY - radius - 30);
-      ctx.closePath();
-      ctx.fill();
-    }
-
-    function spinWheel() {
-      if (isSpinning) return;
-      isSpinning = true;
-
-      // Começa som da roleta
-      spinSound.currentTime = 0;
-      spinSound.play();
-
-      const duration = 12000; // 10 segundos
-      const minRotations = 8;
-      const maxRotations = 15;
-      const totalRotationDegrees = (Math.random() * (maxRotations - minRotations) + minRotations) * 360;
-
-      const start = performance.now();
-
-      function animate(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = easeOutCubic(progress);
-        rotation = (totalRotationDegrees * eased) * Math.PI / 180;
-        drawWheel();
-
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        } else {
-          isSpinning = false;
-
-          // Para o som da roleta e toca o yay
-          spinSound.pause();
-          spinSound.currentTime = 0;
-
-          yaySound.currentTime = 0;
-          yaySound.play();
-
-          showResult();
-        }
-      }
-
-      requestAnimationFrame(animate);
-    }
-
-    function showResult() {
-      const sliceAngle = (2 * Math.PI) / items.length;
-
-      const normalizedRotation = rotation % (2 * Math.PI);
-
-      const pointerAngle = (3 * Math.PI / 2 - normalizedRotation + 2 * Math.PI) % (2 * Math.PI);
-
-      const selectedIndex = Math.floor(pointerAngle / sliceAngle) % items.length;
-
-      const selected = items[selectedIndex];
-
-      document.getElementById("resultName").textContent = selected.nome;
-      document.getElementById("resultImg").src = selected.imagem;
-      document.getElementById("modal").style.display = "flex";
-
-      launchConfetti();
-    }
-
-    function easeOutCubic(t) {
-      return 1 - Math.pow(1 - t, 3);
-    }
-
-    document.getElementById("spinBtn").addEventListener("click", spinWheel);
-
-    document.getElementById("modal").addEventListener("click", () => {
-      document.getElementById("modal").style.display = "none";
-    });
-
-    const confettiCanvas = document.getElementById("confetti");
-    const confettiCtx = confettiCanvas.getContext("2d");
-    confettiCanvas.width = window.innerWidth;
-    confettiCanvas.height = window.innerHeight;
-
-    let confettiParticles = [];
-
-    function launchConfetti() {
-      confettiParticles = [];
-
-      const colors = ["#FFC700", "#FF0000", "#2E3192", "#41BBC7"];
-
-      for (let i = 0; i < 150; i++) {
-        confettiParticles.push({
-          x: Math.random() * confettiCanvas.width,
-          y: Math.random() * confettiCanvas.height - confettiCanvas.height,
-          r: (Math.random() * 6) + 4,
-          d: (Math.random() * 15) + 5,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          tilt: Math.floor(Math.random() * 10) - 10,
-          tiltAngleIncremental: (Math.random() * 0.07) + 0.05,
-          tiltAngle: 0
-        });
-      }
-
-      requestAnimationFrame(updateConfetti);
-      setTimeout(() => {
-        confettiParticles = [];
-        confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-      }, 5000);
-    }
-
-    function updateConfetti() {
-      confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-      for (let i = 0; i < confettiParticles.length; i++) {
-        const p = confettiParticles[i];
-        p.tiltAngle += p.tiltAngleIncremental;
-        p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
-        p.x += Math.sin(p.d);
-        p.tilt = Math.sin(p.tiltAngle) * 15;
-
-        confettiCtx.beginPath();
-        confettiCtx.lineWidth = p.r / 2;
-        confettiCtx.strokeStyle = p.color;
-        confettiCtx.moveTo(p.x + p.tilt + (p.r / 4), p.y);
-        confettiCtx.lineTo(p.x + p.tilt, p.y + p.tilt + (p.r / 4));
-        confettiCtx.stroke();
-
-        if (p.y > confettiCanvas.height) {
-          p.x = Math.random() * confettiCanvas.width;
-          p.y = -10;
-        }
-      }
-      if (confettiParticles.length > 0) {
-        requestAnimationFrame(updateConfetti);
-      }
-    }
+    criarCarrossel('carousel-5', items5);
+    criarCarrossel('carousel-10', items10);
   </script>
-</body>
 
+</body>
 </html>
