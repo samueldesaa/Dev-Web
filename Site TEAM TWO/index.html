@@ -78,85 +78,88 @@
         }
 
         #startButton {
-    position: fixed;
-    top: 30px;
-    left: 20px;
-    transform: scale(1.2);
-    width: 40vw;
-    max-width: 200px;
-    background-color: transparent;
-    border: none;
-    border-radius: 20px;
-    font-size: 1.5rem;
-    color: white;
-    cursor: pointer;
-    z-index: 3;
-    transition: transform 0.3s ease;
-    user-select: none;
-}
+            position: fixed;
+            top: 30px;
+            left: 20px;
+            transform: scale(1.2);
+            width: 40vw;
+            max-width: 200px;
+            background-color: transparent;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            z-index: 3;
+            transition: transform 0.3s ease;
+            user-select: none;
+        }
 
-#startButton img {
-    width: 100%;
-    max-width: 120px;
-    opacity: 0.8;
-    border-radius: 10%;
-}
+        #startButton img {
+            width: 100%;
+            max-width: 120px;
+            opacity: 0.8;
+            border-radius: 10%;
+        }
 
-#startButton:hover {
-    transform: scale(1.3);
-}
+        #startButton:hover {
+            transform: scale(1.3);
+        }
 
-/* Botão roxo com gradiente no canto inferior direito */
-#donateButton {
-    position: fixed;
-    top: 30px;
-    right: 20px;
-    padding: 0.7em 1.2em;
-    background: linear-gradient(45deg, #6a0dad, #a94fe3);
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 30px;
-    font-size: 1rem;
-    text-decoration: none;
-    z-index: 999;
-    box-shadow: 0 0 10px rgba(170, 84, 255, 0.7);
-    transition: transform 0.2s, box-shadow 0.3s;
-}
+        #teamtwo{
+            top: 80px;
+        }
 
-#donateButton:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(170, 84, 255, 1);
-}
+        /* Botão roxo com gradiente no canto inferior direito */
+        .especialButton {
+            position: fixed;
+            top: 30px;
+            right: 20px;
+            padding: 0.7em 1.2em;
+            background: linear-gradient(45deg, #6a0dad, #a94fe3);
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            text-decoration: none;
+            z-index: 999;
+            box-shadow: 0 0 10px rgba(170, 84, 255, 0.7);
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
 
-/* RESPONSIVIDADE */
-@media (max-width: 768px) {
-    #startButton {
-        width: 45vw;
-        transform: scale(1);
-    }
+        #donateButton:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(170, 84, 255, 1);
+        }
 
-    #startButton:hover {
-        transform: scale(1.1);
-    }
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            #startButton {
+                width: 45vw;
+                transform: scale(1);
+            }
 
-    #donateButton {
-        font-size: 0.9rem;
-        padding: 0.6em 1em;
-    }
-}
+            #startButton:hover {
+                transform: scale(1.1);
+            }
 
-@media (max-width: 480px) {
-    #startButton {
-        width: 50vw;
-    }
+            #donateButton {
+                font-size: 0.9rem;
+                padding: 0.6em 1em;
+            }
+        }
 
-    #donateButton {
-        font-size: 0.8rem;
-        padding: 0.5em 0.8em;
-    }
-}
+        @media (max-width: 480px) {
+            #startButton {
+                width: 50vw;
+            }
 
+            #donateButton {
+                font-size: 0.8rem;
+                padding: 0.5em 0.8em;
+            }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
 </head>
@@ -190,7 +193,8 @@
     </header>
 
     <!-- Botão flutuante roxo -->
-    <a href="vaquinha.html" id="donateButton">Apoie a Vaquinha</a>
+    <a href="vaquinha.html" class="especialButton">Apoie a Vaquinha</a>
+    <a href="TeamTwo.html" id="teamtwo" class="especialButton">Conheça a Team Two</a>
 
     <script>
         const slides = document.querySelectorAll('.slide');

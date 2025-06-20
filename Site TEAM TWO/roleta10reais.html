@@ -1,8 +1,7 @@
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
-  <title>Roleta Brindes</title>
+  <title>Roleta Brindes - R$10</title>
   <link rel="shortcut icon" href="Team Two.png" type="image/x-icon">
   <style>
     body {
@@ -26,32 +25,31 @@
     }
 
     .wheel-container {
-  position: relative;
-  display: inline-block;
-}
+      position: relative;
+      display: inline-block;
+    }
 
-#spinBtn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #27ae60;
-  color: white;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  transition: background-color 0.3s ease;
-}
+    #spinBtn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: #27ae60;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      transition: background-color 0.3s ease;
+    }
 
-#spinBtn:hover {
-  background-color: #219150;
-}
-
+    #spinBtn:hover {
+      background-color: #219150;
+    }
 
     #modal {
       display: none;
@@ -63,7 +61,7 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
       justify-content: center;
-      align-items10: center;
+      align-items: center;
       padding: 1rem;
     }
 
@@ -83,7 +81,6 @@
         transform: scale(0.8);
         opacity: 0;
       }
-
       to {
         transform: scale(1);
         opacity: 1;
@@ -130,29 +127,23 @@
       transition: background-color 0.3s ease;
     }
 
-    /* Responsividade */
     @media (max-width: 600px) {
-
-
       #modalContent {
         padding: 20px;
       }
-
       h1 {
         font-size: 7vw;
       }
-
       #backBtn {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
       }
     }
   </style>
-
 </head>
 
 <body>
-  <h1>🎯Ganhe seu brinde</h1>
+  <h1>🎯 Ganhe seu brinde de R$10</h1>
   <div class="wheel-container">
     <canvas id="wheel" width="500" height="500"></canvas>
     <button id="spinBtn">⟳</button>
@@ -160,7 +151,6 @@
   
   <button id="backBtn" onclick="location.href='brindes.html'">← Voltar</button>
 
-  <!-- Modal de resultado -->
   <div id="modal">
     <div id="modalContent">
       <h2>🎉 Parabéns!</h2>
@@ -169,232 +159,251 @@
     </div>
   </div>
 
-  <!-- Confetti canvas -->
   <canvas id="confetti"></canvas>
 
-  <!-- Sons -->
   <audio id="spinSound" src="Roda1.mp3" loop></audio>
   <audio id="yaySound" src="Yay.mp3"></audio>
 
-  <script src="listarImagens.js"></script>
   <script>
-    const canvas = document.getElementById("wheel");
-    const ctx = canvas.getContext("2d");
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = 230;
+    let items10 = [];
 
-    let loadedImages = 0;
-    items10.forEach(item => {
-      const img = new Image();
-      img.src = item.imagem;
-      img.onload = () => {
-        loadedImages++;
-        if (loadedImages === items10.length) {
-          drawWheel();
-        }
-      };
-      item.imgObj = img;
-    });
+    // Carrega os itens de R$10 do banco de dados
+    fetch('/PHP/listarImagens.php')
+      .then(response => response.json())
+      .then(data => {
+        items10 = data.items10;
+        initWheel();
+      })
+      .catch(error => {
+        console.error('Erro ao carregar itens:', error);
+        document.getElementById("wheel").getContext("2d").fillText("Erro ao carregar brindes", 100, 100);
+      });
 
-    let rotation = 0;
-    let isSpinning = false;
+    function initWheel() {
+      const canvas = document.getElementById("wheel");
+      const ctx = canvas.getContext("2d");
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const radius = 230;
 
-    // Sons
-    const spinSound = document.getElementById("spinSound");
-    const yaySound = document.getElementById("yaySound");
-
-    // Gera uma cor aleatória em formato hexadecimal
-    function getRandomPastelColor() {
-      function randomPastelValue() {
-        return Math.floor((Math.random() * 105) + 150); // 150 a 255
+      // Verifica se há itens para exibir
+      if (items10.length === 0) {
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "20px Arial";
+        ctx.fillText("Nenhum brinde de R$10 cadastrado", centerX - 150, centerY);
+        document.getElementById("spinBtn").disabled = true;
+        return;
       }
 
-      const r = randomPastelValue();
-      const g = randomPastelValue();
-      const b = randomPastelValue();
+      // Carrega as imagens
+      let loadedImages = 0;
+      items10.forEach(item => {
+        const img = new Image();
+        img.src = item.imagem;
+        img.onload = () => {
+          loadedImages++;
+          if (loadedImages === items10.length) {
+            drawWheel();
+          }
+        };
+        img.onerror = () => {
+          console.error("Erro ao carregar imagem:", item.imagem);
+          loadedImages++;
+          if (loadedImages === items10.length) {
+            drawWheel();
+          }
+        };
+        item.imgObj = img;
+      });
 
-      const toHex = (value) => value.toString(16).padStart(2, '0');
+      let rotation = 0;
+      let isSpinning = false;
 
-      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-    }
+      // Configuração de áudio
+      const spinSound = document.getElementById("spinSound");
+      const yaySound = document.getElementById("yaySound");
 
-    const colors = items10.map(() => getRandomPastelColor());
+      // Gera cores pastel aleatórias para cada segmento
+      function getRandomPastelColor() {
+        const hue = Math.floor(Math.random() * 360);
+        return `hsl(${hue}, 100%, 85%)`;
+      }
+      const colors = items10.map(() => getRandomPastelColor());
 
-    function drawWheel() {
-      const sliceAngle = (2 * Math.PI) / items10.length;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Desenha a roleta
+      function drawWheel() {
+        const sliceAngle = (2 * Math.PI) / items10.length;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const baseCount = 6;
-      const baseSize = 90;
-      const minSize = 40;
-      const baseDistanceFactor = 0.8;
-      const minDistanceFactor = 0.65;
+        // Ajusta o tamanho das imagens baseado na quantidade de itens
+        const baseCount = 6;
+        const baseSize = 90;
+        const minSize = 40;
+        const baseDistanceFactor = 0.6;
+        const minDistanceFactor = 0.5;
 
-      const scaleFactor = Math.sqrt(baseCount / items10.length);
+        const scaleFactor = Math.sqrt(baseCount / items10.length);
+        const size = Math.max(minSize, baseSize * scaleFactor);
+        const distanceFactor = Math.max(minDistanceFactor, baseDistanceFactor * scaleFactor);
 
-      const size = Math.max(minSize, baseSize * scaleFactor);
-      const distanceFactor = Math.max(minDistanceFactor, baseDistanceFactor * scaleFactor);
+        // Desenha cada segmento da roleta
+        for (let i = 0; i < items10.length; i++) {
+          const item = items10[i];
+          const startAngle = i * sliceAngle + rotation;
+          const endAngle = startAngle + sliceAngle;
 
-      for (let i = 0; i < items10.length; i++) {
-        const item = items10[i];
-        const startAngle = i * sliceAngle + rotation;
-        const endAngle = startAngle + sliceAngle;
+          // Desenha o fundo do segmento
+          ctx.fillStyle = colors[i];
+          ctx.beginPath();
+          ctx.moveTo(centerX, centerY);
+          ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+          ctx.closePath();
+          ctx.fill();
 
-        ctx.fillStyle = colors[i];
+          // Posiciona a imagem no centro do segmento
+          const angle = startAngle + sliceAngle / 2;
+          const imgX = centerX + Math.cos(angle) * radius * distanceFactor;
+          const imgY = centerY + Math.sin(angle) * radius * distanceFactor;
+
+          // Desenha a imagem
+          ctx.save();
+          ctx.translate(imgX, imgY);
+          ctx.rotate(angle + Math.PI/2); // Rotaciona a imagem para ficar alinhada
+          ctx.drawImage(item.imgObj, -size / 2, -size / 2, size, size);
+          ctx.restore();
+        }
+
+        // Desenha o ponteiro
+        ctx.fillStyle = "#706c00";
         ctx.beginPath();
-        ctx.moveTo(centerX, centerY);
-        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.moveTo(centerX, centerY - radius + 10);
+        ctx.lineTo(centerX - 10, centerY - radius - 30);
+        ctx.lineTo(centerX + 10, centerY - radius - 30);
         ctx.closePath();
         ctx.fill();
-
-        const angle = startAngle + sliceAngle / 2;
-        const imgX = centerX + Math.cos(angle) * radius * distanceFactor;
-        const imgY = centerY + Math.sin(angle) * radius * distanceFactor;
-
-        ctx.save();
-        ctx.translate(imgX, imgY);
-        ctx.rotate(0);
-        ctx.drawImage(item.imgObj, -size / 2, -size / 2, size, size);
-        ctx.restore();
       }
 
-      ctx.fillStyle = "#706c00";
-      ctx.beginPath();
-      ctx.moveTo(centerX, centerY - radius + 10);
-      ctx.lineTo(centerX - 10, centerY - radius - 30);
-      ctx.lineTo(centerX + 10, centerY - radius - 30);
-      ctx.closePath();
-      ctx.fill();
-    }
+      // Gira a roleta
+      function spinWheel() {
+        if (isSpinning || items10.length === 0) return;
+        isSpinning = true;
 
-    function spinWheel() {
-      if (isSpinning) return;
-      isSpinning = true;
+        // Toca o som da roleta girando
+        spinSound.currentTime = 0;
+        spinSound.play();
 
-      // Começa som da roleta
-      spinSound.currentTime = 0;
-      spinSound.play();
+        const duration = 12000; // 12 segundos
+        const minRotations = 8;
+        const maxRotations = 15;
+        const totalRotationDegrees = (Math.random() * (maxRotations - minRotations) + minRotations) * 360;
 
-      const duration = 12000; // 10 segundos
-      const minRotations = 8;
-      const maxRotations = 15;
-      const totalRotationDegrees = (Math.random() * (maxRotations - minRotations) + minRotations) * 360;
+        const start = performance.now();
 
-      const start = performance.now();
+        function animate(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = easeOutCubic(progress);
+          rotation = (totalRotationDegrees * eased) * Math.PI / 180;
+          drawWheel();
 
-      function animate(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = easeOutCubic(progress);
-        rotation = (totalRotationDegrees * eased) * Math.PI / 180;
-        drawWheel();
-
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        } else {
-          isSpinning = false;
-
-          // Para o som da roleta e toca o yay
-          spinSound.pause();
-          spinSound.currentTime = 0;
-
-          yaySound.currentTime = 0;
-          yaySound.play();
-
-          showResult();
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            isSpinning = false;
+            spinSound.pause();
+            spinSound.currentTime = 0;
+            yaySound.currentTime = 0;
+            yaySound.play();
+            showResult();
+          }
         }
+
+        requestAnimationFrame(animate);
       }
 
-      requestAnimationFrame(animate);
-    }
+      // Mostra o resultado
+      function showResult() {
+        const sliceAngle = (2 * Math.PI) / items10.length;
+        const normalizedRotation = rotation % (2 * Math.PI);
+        const pointerAngle = (3 * Math.PI / 2 - normalizedRotation + 2 * Math.PI) % (2 * Math.PI);
+        const selectedIndex = Math.floor(pointerAngle / sliceAngle) % items10.length;
+        const selected = items10[selectedIndex];
 
-    function showResult() {
-      const sliceAngle = (2 * Math.PI) / items10.length;
-
-      const normalizedRotation = rotation % (2 * Math.PI);
-
-      const pointerAngle = (3 * Math.PI / 2 - normalizedRotation + 2 * Math.PI) % (2 * Math.PI);
-
-      const selectedIndex = Math.floor(pointerAngle / sliceAngle) % items10.length;
-
-      const selected = items10[selectedIndex];
-
-      document.getElementById("resultName").textContent = selected.nome;
-      document.getElementById("resultImg").src = selected.imagem;
-      document.getElementById("modal").style.display = "flex";
-
-      launchConfetti();
-    }
-
-    function easeOutCubic(t) {
-      return 1 - Math.pow(1 - t, 3);
-    }
-
-    document.getElementById("spinBtn").addEventListener("click", spinWheel);
-
-    document.getElementById("modal").addEventListener("click", () => {
-      document.getElementById("modal").style.display = "none";
-    });
-
-    const confettiCanvas = document.getElementById("confetti");
-    const confettiCtx = confettiCanvas.getContext("2d");
-    confettiCanvas.width = window.innerWidth;
-    confettiCanvas.height = window.innerHeight;
-
-    let confettiParticles = [];
-
-    function launchConfetti() {
-      confettiParticles = [];
-
-      const colors = ["#FFC700", "#FF0000", "#2E3192", "#41BBC7"];
-
-      for (let i = 0; i < 150; i++) {
-        confettiParticles.push({
-          x: Math.random() * confettiCanvas.width,
-          y: Math.random() * confettiCanvas.height - confettiCanvas.height,
-          r: (Math.random() * 6) + 4,
-          d: (Math.random() * 15) + 5,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          tilt: Math.floor(Math.random() * 10) - 10,
-          tiltAngleIncremental: (Math.random() * 0.07) + 0.05,
-          tiltAngle: 0
-        });
+        document.getElementById("resultName").textContent = selected.nome;
+        document.getElementById("resultImg").src = selected.imagem;
+        document.getElementById("modal").style.display = "flex";
+        launchConfetti();
       }
 
-      requestAnimationFrame(updateConfetti);
-      setTimeout(() => {
+      // Função de easing para animação
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      // Configura os eventos
+      document.getElementById("spinBtn").addEventListener("click", spinWheel);
+      document.getElementById("modal").addEventListener("click", () => {
+        document.getElementById("modal").style.display = "none";
+      });
+
+      // Configura o efeito de confete
+      const confettiCanvas = document.getElementById("confetti");
+      const confettiCtx = confettiCanvas.getContext("2d");
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+
+      let confettiParticles = [];
+
+      function launchConfetti() {
         confettiParticles = [];
-        confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-      }, 5000);
-    }
+        const colors = ["#FFC700", "#FF0000", "#2E3192", "#41BBC7"];
 
-    function updateConfetti() {
-      confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-      for (let i = 0; i < confettiParticles.length; i++) {
-        const p = confettiParticles[i];
-        p.tiltAngle += p.tiltAngleIncremental;
-        p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
-        p.x += Math.sin(p.d);
-        p.tilt = Math.sin(p.tiltAngle) * 15;
-
-        confettiCtx.beginPath();
-        confettiCtx.lineWidth = p.r / 2;
-        confettiCtx.strokeStyle = p.color;
-        confettiCtx.moveTo(p.x + p.tilt + (p.r / 4), p.y);
-        confettiCtx.lineTo(p.x + p.tilt, p.y + p.tilt + (p.r / 4));
-        confettiCtx.stroke();
-
-        if (p.y > confettiCanvas.height) {
-          p.x = Math.random() * confettiCanvas.width;
-          p.y = -10;
+        for (let i = 0; i < 150; i++) {
+          confettiParticles.push({
+            x: Math.random() * confettiCanvas.width,
+            y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+            r: (Math.random() * 6) + 4,
+            d: (Math.random() * 15) + 5,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            tilt: Math.floor(Math.random() * 10) - 10,
+            tiltAngleIncremental: (Math.random() * 0.07) + 0.05,
+            tiltAngle: 0
+          });
         }
-      }
-      if (confettiParticles.length > 0) {
+
         requestAnimationFrame(updateConfetti);
+        setTimeout(() => {
+          confettiParticles = [];
+          confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        }, 5000);
+      }
+
+      function updateConfetti() {
+        confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        for (let i = 0; i < confettiParticles.length; i++) {
+          const p = confettiParticles[i];
+          p.tiltAngle += p.tiltAngleIncremental;
+          p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+          p.x += Math.sin(p.d);
+          p.tilt = Math.sin(p.tiltAngle) * 15;
+
+          confettiCtx.beginPath();
+          confettiCtx.lineWidth = p.r / 2;
+          confettiCtx.strokeStyle = p.color;
+          confettiCtx.moveTo(p.x + p.tilt + (p.r / 4), p.y);
+          confettiCtx.lineTo(p.x + p.tilt, p.y + p.tilt + (p.r / 4));
+          confettiCtx.stroke();
+
+          if (p.y > confettiCanvas.height) {
+            p.x = Math.random() * confettiCanvas.width;
+            p.y = -10;
+          }
+        }
+        if (confettiParticles.length > 0) {
+          requestAnimationFrame(updateConfetti);
+        }
       }
     }
   </script>
 </body>
-
 </html>

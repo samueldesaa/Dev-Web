@@ -182,6 +182,27 @@
     outline: none;
   }
 
+  .mao-indicadora {
+      margin-top: 10px;
+      width: 50px !important;
+      height: 50px !important;
+      animation: bounce 1s infinite;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    @keyframes bounce {
+
+0%,
+100% {
+  transform: translateY(0);
+}
+
+50% {
+  transform: translateY(-10px);
+}
+}
+
   /* Responsividade aprimorada */
   @media (max-width: 700px) {
     body {
@@ -228,23 +249,26 @@
   <div class="photo-container">
     <img src="vaquinha.png" alt="Foto ilustrativa 4 por 3" />
   </div>
-
+  
   <div class="qr-group" aria-label="Códigos QR para Vaquinha e Pix">
     <div class="qr-container" aria-label="Código QR da Vaquinha" tabindex="0" role="button" onclick="window.open('https://www.vakinha.com.br/5435410')" onkeydown="if(event.key==='Enter') window.open('https://www.vakinha.com.br/5435410', '_blank')">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.vakinha.com.br/5435410" alt="QR Code Vaquinha" />
       <div class="qr-label">Vaquinha</div>
+      <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
     </div>
-<div class="qr-container" aria-label="Código QR do Instagram" tabindex="0" role="button" onclick="window.open('https://www.instagram.com/t2_maker?igsh=MXZtaTAxdXJkNTJvcg==')" onkeydown="if(event.key==='Enter') window.open('https://www.vakinha.com.br/5435410', '_blank')">
+    <div class="qr-container" aria-label="Código QR do Instagram" tabindex="0" role="button" onclick="window.open('https://www.instagram.com/t2_maker?igsh=MXZtaTAxdXJkNTJvcg==')" onkeydown="if(event.key==='Enter') window.open('https://www.vakinha.com.br/5435410', '_blank')">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.instagram.com/t2_maker?igsh=MXZtaTAxdXJkNTJvcg==" alt="QR Code Instagram" />
       <div class="qr-label">Instagram</div>
+      <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
     </div>
-
-  <div class="pix-section">
-    <div class="pix-label">Chave Pix</div>
-    <div class="pix-key" tabindex="0" title="Clique para copiar a chave Pix" onclick="copyPixKey()" onkeydown="if(event.key === 'Enter') copyPixKey()">
+    
+    <div class="pix-section">
+      <div class="pix-label">Chave Pix</div>
+      <div class="pix-key" tabindex="0" title="Clique para copiar a chave Pix" onclick="copyPixKey()" onkeydown="if(event.key === 'Enter') copyPixKey()">
         5435410@vakinha.com.br
+      </div>
     </div>
-  </div>
+    <img style="margin: -30px;" src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
 </div>
 
 <!-- Botão grande fixo -->

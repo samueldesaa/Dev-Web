@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,7 +30,7 @@
       max-width: 900px;
       width: 100%;
       border-radius: 20px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
       padding: 2.5rem;
       display: flex;
       flex-direction: column;
@@ -51,7 +52,7 @@
       font-weight: 600;
       font-size: 1rem;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(118,75,162,0.5);
+      box-shadow: 0 4px 10px rgba(118, 75, 162, 0.5);
       transition: background-color 0.3s ease;
     }
 
@@ -75,7 +76,7 @@
       background: #f5f5f5;
       padding: 2rem;
       border-radius: 24px;
-      box-shadow: 0 14px 40px rgba(118,75,162,0.5);
+      box-shadow: 0 14px 40px rgba(118, 75, 162, 0.5);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -83,8 +84,9 @@
       width: 270px;
       min-height: 350px;
     }
-    .qr-container:hover{
-        transform: scale(1.1);
+
+    .qr-container:hover {
+      transform: scale(1.1);
     }
 
     .qr-container h2 {
@@ -123,7 +125,7 @@
       font-size: 1.8rem;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 6px 15px rgba(118,75,162,0.6);
+      box-shadow: 0 6px 15px rgba(118, 75, 162, 0.6);
       transition: background-color 0.3s ease;
       z-index: 1000;
       width: 90%;
@@ -131,11 +133,60 @@
       text-align: center;
     }
 
+    h1{
+      margin: 0;
+    }
+
     .btn-brindes:hover,
     .btn-brindes:focus {
       background-color: #5a3580;
       outline: none;
     }
+
+    .btn-gerenciar {
+      position: absolute;
+      top: 1em;
+      right: 1em;
+      z-index: 999;
+      background-color: #764ba2;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(118, 75, 162, 0.5);
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-gerenciar:hover,
+    .btn-gerenciar:focus {
+      background-color: #5a3580;
+      outline: none;
+    }
+
+    .mao-indicadora {
+      margin-top: 10px;
+      width: 50px;
+      animation: bounce 1s infinite;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+
 
     @media (max-width: 700px) {
       body {
@@ -164,9 +215,12 @@
     }
   </style>
 </head>
+
 <body>
 
   <button class="btn-back" onclick="window.location.href='vaquinha.html'">← Voltar</button>
+  <button class="btn-gerenciar" onclick="window.location.href='/PHP/gerenciar.php'">Gerenciar Itens</button>
+
 
   <div class="container">
     <h1>🎁 Lista de Brindes</h1>
@@ -176,19 +230,18 @@
       <div class="qr-container" onclick="window.location.href='roleta5reais.html'">
         <h2>Brindes de 5 Reais</h2>
         <div id="carousel-5" class="carousel"></div>
+        <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
       </div>
 
       <div class="qr-container" onclick="window.location.href='roleta10reais.html'">
         <h2>Brindes de 10 Reais</h2>
         <div id="carousel-10" class="carousel"></div>
+        <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
       </div>
     </div>
+    <p style="font-weight: bold; margin-top: 5%;">Obs.: A roleta de brindes vale apenas para os participantes da campanha que se encontram dentro do IFMA, caso tenha interesse em um chaveiro específico contate a equipe Team Two pelo Instagram!</p>
   </div>
 
-  <!-- Importa os dados -->
-  <script src="listarImagens.js"></script>
-
-  <!-- Carrosséis -->
   <script>
     function criarCarrossel(containerId, lista) {
       const container = document.getElementById(containerId);
@@ -202,16 +255,25 @@
         `;
       }
 
-      renderItem();
-      setInterval(() => {
-        index = (index + 1) % lista.length;
+      if (lista.length > 0) {
         renderItem();
-      }, 2000);
+        setInterval(() => {
+          index = (index + 1) % lista.length;
+          renderItem();
+        }, 2000);
+      } else {
+        container.innerHTML = `<div class="qr-label">Nenhum brinde cadastrado</div>`;
+      }
     }
 
-    criarCarrossel('carousel-5', items5);
-    criarCarrossel('carousel-10', items10);
+    fetch('/PHP/listarImagens.php')
+      .then(response => response.json())
+      .then(data => {
+        criarCarrossel('carousel-5', data.items5);
+        criarCarrossel('carousel-10', data.items10);
+      });
   </script>
 
 </body>
+
 </html>

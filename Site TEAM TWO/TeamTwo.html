@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Team Two - Apresentação</title>
+    <link rel="shortcut icon" href="Team Two.png" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 1000px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        h1,
+        h2 {
+            color: #764ba2;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .instagram-media {
+            max-width: 100px !important;
+        }
+
+        .event {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem auto;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        video,
+        img {
+            max-width: 100% !important;
+        }
+
+        .event>img {
+            margin: auto;
+            width: 300px;
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(118, 75, 162, 0.4);
+        }
+
+        .event-text {
+            flex: 1;
+            width: 100% !important;
+            margin: auto;
+        }
+
+        .btn-back {
+            position: absolute;
+            top: 1em;
+            left: 1em;
+            background-color: #764ba2;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(118, 75, 162, 0.5);
+            transition: background-color 0.3s ease;
+            z-index: 100;
+        }
+
+        .imgMetade {
+            width: 45% !important;
+        }
+
+        .btn-back:hover {
+            background-color: #5a3580;
+        }
+
+        @media (max-width: 768px) {
+            img {
+                width: 60% !important;
+                margin: 0 20% !important;
+            }
+
+            /* .event {
+                flex-direction: column;
+                align-items: flex-start;
+            } */
+
+            .btn-back {
+                position: relative;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <button class="btn-back" onclick="window.location.href='index.html'">← Voltar</button>
+
+        <h1>Equipe Team Two</h1>
+        <p>Olá! Somos a <strong>Team Two</strong>, uma equipe de robótica formada pelos estudantes de Sistemas de
+            Informação: <strong>Samuel</strong>, <strong>Jamily</strong>, <strong>Franciele</strong> e
+            <strong>Kaillane</strong>, orientados pela professora <strong>Salete Farias</strong>.
+        </p>
+
+        <p>Fomos selecionados para representar o Brasil no <strong>FIRA Mundial</strong>, uma das maiores competições de
+            robótica do mundo, que acontecerá na <strong>Coreia do Sul</strong>, e buscamos apoio para tornar esse sonho
+            possível!</p>
+
+        <div class="section">
+            <h2>🏆 1º lugar - FIRA Estadual 2024</h2>
+            <div class="event">
+                <img style="width: 60%; " src="/Midia/FED1.jpeg" alt="">
+                <img style="width: 30%; " src="/Midia/FED2.jpg" alt="">
+                <div class="event-text">
+                    <p>Foi nossa estreia em competições oficiais e conseguimos alcançar o topo do pódio, garantindo o 1º
+                        lugar no FIRA Estadual com muito empenho e dedicação.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🇧🇷 Classificados para o FIRA Mundial</h2>
+            <div class="event">
+                <img class="imgMetade" src="/Midia/NAC1.jpg" alt="">
+                <img class="imgMetade" src="/Midia/NAC2.jpg" alt="">
+                <div class="event-text">
+                    <p>No FIRA Nacional 2024, garantimos nossa vaga para representar o Brasil no FIRA Mundial. Uma
+                        conquista que nos enche de orgulho e responsabilidade.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>🎟️ Roboparty - Universo IF</h2>
+            <div class="event">
+                <img class="imgMetade" src="/Midia/UNIVIF1.jpg" alt="">
+                <img class="imgMetade" src="/Midia/UNIVIF2.jpg" alt="">
+                <div class="event-text">
+                    <p>Participamos da Roboparty com outros talentos da tecnologia e fomos credenciados para levar nossa
+                        energia e conhecimento para ainda mais longe!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🏆 3º lugar - Roboparty em Portugal</h2>
+            <div class="event">
+                <img style="width: 70%;" src="/Midia/ROBOP2.jpg" alt="">
+                <img style="width: 40%; margin: auto 0 0 10%;" src="/Midia/ROBOP1.jpg" alt="">
+                <img style="width: 30%; margin: auto 12% 0 0;" src="/Midia/ROBOP3.jpg" alt="">
+                <div class="event-text">
+                    <p>Representamos o Brasil em Portugal e conquistamos o primeiro pódio brasileiro na história do
+                        evento: um honroso 3º lugar entre equipes internacionais.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🏆 2º lugar - FIRA Estadual 2025</h2>
+            <div class="event">
+                <img style="width: 70%;" src="/Midia/2NAC1.jpg" alt="">
+                <img style="width: 30%; margin: 0 0 0 15%;" src="/Midia/2NAC2.jpg" alt="">
+                <img style="width: 30%; margin: 0 15% 0 0" src="/Midia/2NAC4.jpg" alt="">
+                <div class="event-text">
+                    <p>Mesmo com uma nova edição da competição, mostramos nossa consistência e evolução ao alcançar o
+                        segundo lugar, reafirmando nosso compromisso com a robótica.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📚 Projetos Educativos</h2>
+            <div class="event">
+                <img style="width: 30%; margin: auto 0 0 15%;" src="/Midia/EVENT5.jpg" alt="">
+                <img style="width: 30%; margin: auto 15% 0 0 ;" src="/Midia/EVENT6.jpg" alt="">
+                <img style="width: 45%; margin: auto;" src="/Midia/EVENT4.jpg" alt="">
+                <img style="width: 45%; margin: auto;" src="/Midia/EVENT1.jpg" alt="">
+                <img style="width: 45%; margin: auto;" src="/Midia/EVENT2.jpg" alt="">
+                <img style="width: 45%; margin: auto;" src="/Midia/EVENT3.jpg" alt="">
+                <div class="event-text">
+                    <p>Realizamos oficinas de robótica para crianças da Ilha de São Luís e participamos de eventos,
+                        levando tecnologia de forma divertida, inclusiva e transformadora.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 3rem; text-align:center;">📲 Acompanhe a gente no Instagram:<br>
+            <a href="https://instagram.com/t2_maker">
+                <img style="width: 60%; margin: auto 20%;" src="/Midia/INSTA.png" alt="">
+            </a>
+            <a href="https://instagram.com/t2_maker" target="_blank" style="color: #764ba2;">@t2_maker</a>
+        </h2>
+    </div>
+
+</body>
+
+</html>
