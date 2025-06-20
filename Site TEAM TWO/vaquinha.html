@@ -1,188 +1,188 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Vaquinha Team Two</title>
-<link rel="shortcut icon" href="Team Two.png" type="image/x-icon">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vaquinha Team Two</title>
+  <link rel="shortcut icon" href="Team Two.png" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-  * {
-    box-sizing: border-box;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  body {
-    margin: 0;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    font-family: 'Poppins', sans-serif;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3rem 2rem;
-  }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 2rem;
+    }
 
-  .container {
-    background: #fff;
-    max-width: 900px;
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    padding-bottom: 6rem; /* espaço para o botão fixo */
-  }
+    .container {
+      background: #fff;
+      max-width: 900px;
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      padding-bottom: 6rem;
+      /* espaço para o botão fixo */
+    }
 
-  .btn-back {
-    position: absolute;
-    top: 1em;
-    left: 1em;
-    z-index: 999;
-    background-color: #764ba2;
-    color: #fff;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(118,75,162,0.5);
-    transition: background-color 0.3s ease;
-  }
+    .btn-back {
+      position: absolute;
+      top: 1em;
+      left: 1em;
+      z-index: 999;
+      background-color: #764ba2;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(118, 75, 162, 0.5);
+      transition: background-color 0.3s ease;
+    }
 
-  .btn-back:hover,
-  .btn-back:focus {
-    background-color: #5a3580;
-    outline: none;
-  }
+    .btn-back:hover,
+    .btn-back:focus {
+      background-color: #5a3580;
+      outline: none;
+    }
 
-  .photo-container {
-    width: 100%;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(102,126,234,0.4);
-    border: 4px solid #667eea;
-    margin-bottom: 3rem;
-  }
+    .photo-container {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+      border: 4px solid #667eea;
+      margin-bottom: 3rem;
+    }
 
-  .photo-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+    .photo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-  .qr-group {
-    display: flex;
-    gap: 3rem;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
-    max-width: 600px;
-  }
+    .qr-group {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+      /* max-width: 600px; */
+    }
 
-  .qr-container {
-    background: #f5f5f5;
-    padding: 2rem;
-    border-radius: 24px;
-    box-shadow: 0 14px 40px rgba(118,75,162,0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 230px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    .qr-container {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 24px;
+      box-shadow: 0 14px 40px rgba(118, 75, 162, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 26%;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-  .qr-container:hover {
-    transform: scale(1.05);
-    box-shadow: 0 20px 60px rgba(118,75,162,0.7);
-  }
+    .qr-container:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 60px rgba(118, 75, 162, 0.7);
+    }
 
-  .qr-container img {
-    width: 200px;
-    height: 200px;
-    border-radius: 16px;
-    filter: drop-shadow(0 0 8px #764ba2);
-  }
+    .qr-container img {
+      width: 100%;
+      filter: drop-shadow(0 0 8px #764ba2);
+    }
 
-  .qr-label {
-    margin-top: 1.2rem;
-    font-weight: 700;
-    color: #764ba2;
-    font-size: 1.15rem;
-    user-select: none;
-    text-align: center;
-  }
+    .qr-label {
+      margin-top: 1.2rem;
+      font-weight: 700;
+      color: #764ba2;
+      font-size: 1.15rem;
+      user-select: none;
+      text-align: center;
+    }
 
-  .pix-section {
-    margin-top: 3.5rem;
-    width: 100%;
-    text-align: center;
-  }
+    .pix-section {
+      margin-top: 1rem;
+      width: 100%;
+      text-align: center;
+    }
 
-  .pix-label {
-    font-weight: 700;
-    font-size: 1.3rem;
-    margin-bottom: 0.75rem;
-    color: #764ba2;
-  }
+    .pix-label {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: #764ba2;
+    }
 
-  .pix-key {
-    background: #e0d7f9;
-    padding: 1.1rem 1.8rem;
-    border-radius: 14px;
-    font-size: 1.2rem;
-    letter-spacing: 0.05em;
-    color: #4a2e8a;
-    user-select: all;
-    box-shadow: inset 0 0 14px #b3a0e8;
-    transition: background 0.3s ease;
-    display: inline-block;
-    cursor: pointer;
-    word-break: break-all;
-    max-width: 100%;
-  }
+    .pix-key {
+      background: #e0d7f9;
+      padding: 1.1rem 1.8rem;
+      border-radius: 14px;
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+      color: #4a2e8a;
+      user-select: all;
+      box-shadow: inset 0 0 14px #b3a0e8;
+      transition: background 0.3s ease;
+      display: inline-block;
+      cursor: pointer;
+      word-break: break-all;
+      max-width: 100%;
+    }
 
-  .pix-key:hover {
-    background: #d0c2f5;
-  }
+    .pix-key:hover {
+      background: #d0c2f5;
+    }
 
-  .btn-brindes {
-    position: fixed;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #502180;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    padding: 1.2rem 3rem;
-    font-size: 1.8rem;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 6px 15px rgba(118,75,162,0.6);
-    transition: background-color 0.3s ease;
-    z-index: 1000;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-  }
+    .btn-brindes {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #502180;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 1.2rem 3rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(118, 75, 162, 0.6);
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
 
-  .btn-brindes:hover,
-  .btn-brindes:focus {
-    background-color: #5a3580;
-    outline: none;
-  }
+    .btn-brindes:hover,
+    .btn-brindes:focus {
+      background-color: #5a3580;
+      outline: none;
+    }
 
-  .mao-indicadora {
+    .mao-indicadora {
       margin-top: 10px;
       width: 50px !important;
       height: 50px !important;
@@ -193,105 +193,124 @@
 
     @keyframes bounce {
 
-0%,
-100% {
-  transform: translateY(0);
-}
+      0%,
+      100% {
+        transform: translateY(0);
+      }
 
-50% {
-  transform: translateY(-10px);
-}
-}
-
-  /* Responsividade aprimorada */
-  @media (max-width: 700px) {
-    body {
-      padding: 1.5rem 1rem;
+      50% {
+        transform: translateY(-10px);
+      }
     }
 
-    .container {
-      padding: 1.5rem 1rem 5rem;
-    }
+    /* Responsividade aprimorada */
+    @media (max-width: 700px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
 
-    .qr-group {
-      flex-direction: column;
-      gap: 2rem;
-    }
+      .container {
+        padding: 1.5rem 1rem 5rem;
+      }
 
-    .qr-container {
-      width: 100%;
-      max-width: 250px;
-      padding: 1.5rem;
-    }
+      .qr-group {
+        width: 100%;
+        flex-direction: flex;
+        gap: 2rem;
+      }
 
-    .qr-container img {
-      width: 160px;
-      height: 160px;
-    }
+      .qr-container {
+        width: 70% !important;
+        max-width: 250px;
+        padding: 1.5rem;
+      }
 
-    .pix-key {
-      font-size: 1.05rem;
-      padding: 1rem 1.2rem;
-    }
+      .qr-container img {
+        width: 100%;
+      }
 
-    .btn-brindes {
-      font-size: 1.4rem;
-      padding: 1rem 2rem;
+      .pix-key {
+        font-size: 1.05rem;
+        padding: 1rem 1.2rem;
+      }
+
+      .btn-brindes {
+        font-size: 1.4rem;
+        padding: 1rem 2rem;
+      }
     }
-  }
-</style>
+  </style>
 </head>
+
 <body>
-    
-<button class="btn-back" type="button" onclick="window.location.href='index.html'">← Voltar</button>
-<div class="container" role="main" aria-label="Foto grande com QR Codes e chave Pix">
 
-  <div class="photo-container">
-    <img src="vaquinha.png" alt="Foto ilustrativa 4 por 3" />
-  </div>
-  
-  <div class="qr-group" aria-label="Códigos QR para Vaquinha e Pix">
-    <div class="qr-container" aria-label="Código QR da Vaquinha" tabindex="0" role="button" onclick="window.open('https://www.vakinha.com.br/5435410')" onkeydown="if(event.key==='Enter') window.open('https://www.vakinha.com.br/5435410', '_blank')">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.vakinha.com.br/5435410" alt="QR Code Vaquinha" />
-      <div class="qr-label">Vaquinha</div>
-      <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
+  <button class="btn-back" type="button" onclick="window.location.href='index.html'">← Voltar</button>
+  <div class="container" role="main" aria-label="Foto grande com QR Codes e chave Pix">
+
+    <div class="photo-container">
+      <img src="vaquinha.png" alt="Foto ilustrativa 4 por 3" />
     </div>
-    <div class="qr-container" aria-label="Código QR do Instagram" tabindex="0" role="button" onclick="window.open('https://www.instagram.com/t2_maker?igsh=MXZtaTAxdXJkNTJvcg==')" onkeydown="if(event.key==='Enter') window.open('https://www.vakinha.com.br/5435410', '_blank')">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.instagram.com/t2_maker?igsh=MXZtaTAxdXJkNTJvcg==" alt="QR Code Instagram" />
-      <div class="qr-label">Instagram</div>
-      <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
-    </div>
-    
-    <div class="pix-section">
-      <div class="pix-label">Chave Pix</div>
-      <div class="pix-key" tabindex="0" title="Clique para copiar a chave Pix" onclick="copyPixKey()" onkeydown="if(event.key === 'Enter') copyPixKey()">
-        5435410@vakinha.com.br
+
+    <div class="qr-group" aria-label="Códigos QR para Vaquinha e Pix">
+      <div class="qr-container" aria-label="Código QR da Vaquinha" tabindex="0" role="button"
+        onclick="window.open('https://www.vakinha.com.br/5435410')"
+        onkeydown="if(event.key==='Enter') window.open('https://www.vakinha.com.br/5435410', '_blank')">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.vakinha.com.br/5435410"
+          alt="QR Code Vaquinha" />
+        <div class="qr-label">Vaquinha</div>
+        <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
       </div>
+      <div class="qr-container" aria-label="Código QR do Instagram" tabindex="0" role="button"
+        onclick="window.open('https://www.instagram.com/t2_maker?igsh=MXZtaTAxdXJkNTJvcg==')"
+        onkeydown="if(event.key==='Enter') window.open('https://www.vakinha.com.br/5435410', '_blank')">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.instagram.com/t2_maker?igsh=MXZtaTAxdXJkNTJvcg=="
+          alt="QR Code Instagram" />
+        <div class="qr-label">Instagram</div>
+        <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
+      </div>
+      <div class="qr-container" aria-label="Código QR do Instagram" tabindex="0" role="button"
+        onclick="window.open('https://www.instagram.com/t2_maker?igsh=MXZtaTAxdXJkNTJvcg==')"
+        onkeydown="if(event.key==='Enter') window.open('https://www.vakinha.com.br/5435410', '_blank')">
+        <img
+        src="/img/qrcode.jpg"
+          alt="QR Code Instagram" />
+        <div class="qr-label">Pix</div>
+        <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
+      </div>
+
+      <div class="pix-section">
+        <div class="pix-label">Chave Pix</div>
+        <div class="pix-key" tabindex="0" title="Clique para copiar a chave Pix" onclick="copyPixKey()"
+          onkeydown="if(event.key === 'Enter') copyPixKey()">
+          5435410@vakinha.com.br
+        </div>
+      </div>
+      <img style="margin: -30px;" src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
     </div>
-    <img style="margin: -30px;" src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
-</div>
 
-<!-- Botão grande fixo -->
-<button class="btn-brindes" type="button" onclick="window.location.href='brindes.html'">
-  Ver Brindes
-</button>
+    <!-- Botão grande fixo -->
+    <button class="btn-brindes" type="button" onclick="window.location.href='brindes.html'">
+      Ver Brindes
+    </button>
 
-<script>
-  function copyPixKey() {
-    const pixKeyElement = document.querySelector('.pix-key');
-    const pixKeyText = pixKeyElement.textContent.trim();
-    navigator.clipboard.writeText(pixKeyText)
-      .then(() => {
-        pixKeyElement.style.backgroundColor = '#b8f1b0';
-        pixKeyElement.textContent = 'Chave Pix copiada!';
-        setTimeout(() => {
-          pixKeyElement.textContent = pixKeyText;
-          pixKeyElement.style.backgroundColor = '#e0d7f9';
-        }, 2000);
-      })
-      .catch(() => alert('Falha ao copiar a chave Pix. Tente novamente.'));
-  }
-</script>
+    <script>
+      function copyPixKey() {
+        const pixKeyElement = document.querySelector('.pix-key');
+        const pixKeyText = pixKeyElement.textContent.trim();
+        navigator.clipboard.writeText(pixKeyText)
+          .then(() => {
+            pixKeyElement.style.backgroundColor = '#b8f1b0';
+            pixKeyElement.textContent = 'Chave Pix copiada!';
+            setTimeout(() => {
+              pixKeyElement.textContent = pixKeyText;
+              pixKeyElement.style.backgroundColor = '#e0d7f9';
+            }, 2000);
+          })
+          .catch(() => alert('Falha ao copiar a chave Pix. Tente novamente.'));
+      }
+    </script>
 
 </body>
+
 </html>

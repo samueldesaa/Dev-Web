@@ -68,12 +68,12 @@
             max-width: 100% !important;
         }
 
-        .event>img {
+        img {
             margin: auto;
             width: 300px;
             max-width: 100%;
             border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(118, 75, 162, 0.4);
+            filter: drop-shadow(0 10px 10px rgba(118, 75, 162, 0.4));
         }
 
         .event-text {
@@ -107,6 +107,44 @@
             background-color: #5a3580;
         }
 
+        a {
+            text-align: center;
+            width: 60%;
+            margin: 10px 15% 0px 15% !important;
+            color: #764ba2;
+            font-weight: bolder;
+            font-size: 1.7rem;
+            animation: bounce 3s infinite ease-in-out !important;
+        }
+
+        .mao-indicadora {
+            display: flex;
+            width: auto !important;
+            margin: 10px auto !important;
+            width: 50px !important;
+            height: 50px !important;
+            animation: bounce 1s infinite;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(7px);
+            }
+
+            50% {
+                transform: translateY(-7px);
+            }
+        }
+
+        .align {
+            width: 100%;
+            margin: 0 !important;
+        }
+
         @media (max-width: 768px) {
             img {
                 width: 60% !important;
@@ -131,47 +169,94 @@
     <div class="container">
         <button class="btn-back" onclick="window.location.href='index.html'">← Voltar</button>
 
+        <img style="width: 80%; margin: auto 10%;" src="/Midia/TEAMTWO.jpg" alt="">
         <h1>Equipe Team Two</h1>
         <p>Olá! Somos a <strong>Team Two</strong>, uma equipe de robótica formada pelos estudantes de Sistemas de
-            Informação: <strong>Samuel</strong>, <strong>Jamily</strong>, <strong>Franciele</strong> e
-            <strong>Kaillane</strong>, orientados pela professora <strong>Salete Farias</strong>.
+            Informação: <strong>Samuel Chaves</strong>, <strong>Jamily Grazielle</strong>, <strong>Franciele
+                Alves</strong> e
+            <strong>Kaillane Corrêa</strong>, orientados pela professora <strong>Salete Farias</strong> e com parceria
+            do
+            <strong>laboratório MARAMAKER</strong>, coordenado pela professora <strong>Priscila Lima</strong>.
         </p>
 
-        <p>Fomos selecionados para representar o Brasil no <strong>FIRA Mundial</strong>, uma das maiores competições de
-            robótica do mundo, que acontecerá na <strong>Coreia do Sul</strong>, e buscamos apoio para tornar esse sonho
-            possível!</p>
+        <p>A<strong> Team Two</strong> é uma equipe de robótica que vem construindo uma trajetória de destaque em
+            competições e eventos da área. Agora, temos a honra de anunciar que fomos <strong>classificados para o FIRA
+                Mundial</strong>, que acontecerá em agosto, na cidade de Daegu, <strong>na Coreia do Sul</strong>, uma
+            das maiores competições internacionais de robótica avançada!
+        </p>
+        <p>Nós sabemos que alcançar esse objetivo não será nada fácil, precisamos montar o robô, pagar a inscrição na
+            competição e custear a viagem, então estamos pedindo a sua doação para que possamos ficar mais perto desse
+            sonho.
+        </p>
+        <p>Sua contribuição não será apenas uma ajuda financeira, mas sim um <strong>investimento</strong> em jovens
+            talentos, na
+            educação tecnológica e no futuro da robótica brasileira.
+        </p>
+
+        <p><strong>Conheça um pouco da nossa trajetória em menos de 1 ano de existência:</strong></p>
 
         <div class="section">
             <h2>🏆 1º lugar - FIRA Estadual 2024</h2>
             <div class="event">
                 <img style="width: 60%; " src="/Midia/FED1.jpeg" alt="">
                 <img style="width: 30%; " src="/Midia/FED2.jpg" alt="">
+                <img style="width: 60%; margin: auto 15%;" src="/Midia/FED3.png" alt="">
+                <a href="https://www.instagram.com/reel/C-ckLgMxX0P/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                    target="_blank">Assista ao vídeo do evento</a>
                 <div class="event-text">
-                    <p>Foi nossa estreia em competições oficiais e conseguimos alcançar o topo do pódio, garantindo o 1º
-                        lugar no FIRA Estadual com muito empenho e dedicação.</p>
+                    <p><strong>Em agosto de 2024</strong>, tivemos nossa estreia em competições oficiais e conseguimos
+                        alcançar o topo do pódio no FIRA, o maior evento de robótica do Brasil, garantindo na etapa
+                        estadual o <strong>1º
+                            lugar na modalidade Labirinto Autônomo</strong> com muito empenho e dedicação.</p>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <h2>🇧🇷 Classificados para o FIRA Mundial</h2>
+            <h2>🎟️ FIRA Nacional 2024</h2>
             <div class="event">
-                <img class="imgMetade" src="/Midia/NAC1.jpg" alt="">
-                <img class="imgMetade" src="/Midia/NAC2.jpg" alt="">
+                <img style="width: 45%;" src="/Midia/NAC1.jpg" alt="">
+                <img style="width: 45%;" src="/Midia/NAC2.jpg" alt="">
+                <a href="https://www.instagram.com/p/DIOjKqou8jl/?img_index=1" target="_blank">Veja a postagem do
+                    evento</a>
                 <div class="event-text">
-                    <p>No FIRA Nacional 2024, garantimos nossa vaga para representar o Brasil no FIRA Mundial. Uma
+                    <p><strong>No FIRA Nacional 2024, em novembro</strong>, conseguimos o <strong>4º lugar na modalidade
+                            Futebol de Robôs</strong> e garantimos nossa <strong>vaga para representar o Brasil no FIRA
+                            Mundial na Coreia do Sul</strong>. Uma
                         conquista que nos enche de orgulho e responsabilidade.</p>
                 </div>
             </div>
         </div>
         <div class="section">
-            <h2>🎟️ Roboparty - Universo IF</h2>
+            <h2>🎟️ FIRA Mundial 2025</h2>
+            <div class="event">
+                <img style="width: 60%;" src="/Midia/MUND1.png" alt="">
+                <img style="width: 37%;" src="/Midia/MUND2.png" alt="">
+                <div class="event-text">
+                    <p><strong>Atualmente, estamos arrecadando recursos para participação do FIRA Mundial que acontecerá
+                            de 11 a
+                            15 de agosto, em Daegu - Coreia do Sul</strong>, já recebemos a carta convite e já estamos
+                        cadastrados
+                        para participar da modalidade <strong>Carro Autônomo</strong>, onde um robô em formato de carro
+                        deve percorrer
+                        uma estrada totalmente sozinho</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>🎟️ Universo IF 2024 - Primeira Edição</h2>
             <div class="event">
                 <img class="imgMetade" src="/Midia/UNIVIF1.jpg" alt="">
                 <img class="imgMetade" src="/Midia/UNIVIF2.jpg" alt="">
+                <a href="https://www.instagram.com/p/DB47BS6Mvky/" target="_blank">Assista ao vídeo do evento</a>
                 <div class="event-text">
-                    <p>Participamos da Roboparty com outros talentos da tecnologia e fomos credenciados para levar nossa
-                        energia e conhecimento para ainda mais longe!</p>
+                    <p><strong>Em outubro de 2024, participamos do Universo IF</strong>, um evento com objetivo
+                        de proporcionar um espaço de divulgação e promoção do conhecimento científico,
+                        nele houve a Liga Nacional de Robótica, a maior competição da Rede Federal de Ensimo(IF),
+                        alcançamos <strong>4º lugar na modalidade Desafio de entrega</strong> e fomos
+                        <strong>credenciados para participar da Roboparty 2025 em Portugal</strong>
+                        para levar nossa energia e conhecimento ainda mais longe!
+                    </p>
                 </div>
             </div>
         </div>
@@ -181,10 +266,18 @@
             <div class="event">
                 <img style="width: 70%;" src="/Midia/ROBOP2.jpg" alt="">
                 <img style="width: 40%; margin: auto 0 0 10%;" src="/Midia/ROBOP1.jpg" alt="">
-                <img style="width: 30%; margin: auto 12% 0 0;" src="/Midia/ROBOP3.jpg" alt="">
+                <img style="width: 23%; margin: auto 12% 0 0;" src="/Midia/ROBOP3.jpg" alt="">
+                <a href="https://www.instagram.com/p/DIEUV99s9Ug/" target="_blank">Assista ao vídeo do evento</a>
                 <div class="event-text">
-                    <p>Representamos o Brasil em Portugal e conquistamos o primeiro pódio brasileiro na história do
-                        evento: um honroso 3º lugar entre equipes internacionais.</p>
+                    <p><strong>Em março de 2025</strong>, tivemos a oportunidade de representar o Brasil na <strong>17ª
+                            edição da RoboParty</strong>, realizada em Guimarães, Portugal, um evento educativo de 3
+                        dias em que equipes constroem e programam robôs móveis com apoio técnico, participando também de
+                        atividades lúdicas, em um ambiente imersivo e pedagógico. Participamos da modalidade
+                        <strong>Robot Show</strong>, uma espécie de dança de robôs em grupo, formando a equipe
+                        <strong>Ocean Bots</strong> em parceria com duas equipes portuguesas. Juntos, conquistamos o
+                        <strong>primeiro pódio brasileiro na história do evento: um honroso 3º lugar entre as equipes
+                            internacionais</strong>.
+                    </p>
                 </div>
             </div>
         </div>
@@ -193,11 +286,15 @@
             <h2>🏆 2º lugar - FIRA Estadual 2025</h2>
             <div class="event">
                 <img style="width: 70%;" src="/Midia/2NAC1.jpg" alt="">
-                <img style="width: 30%; margin: 0 0 0 15%;" src="/Midia/2NAC2.jpg" alt="">
-                <img style="width: 30%; margin: 0 15% 0 0" src="/Midia/2NAC4.jpg" alt="">
+                <img style="width: 35%; margin: 0 0 0 12%;" src="/Midia/2NAC2.jpg" alt="">
+                <img style="width: 35%; margin: 0 12% 0 0" src="/Midia/2NAC4.jpg" alt="">
                 <div class="event-text">
-                    <p>Mesmo com uma nova edição da competição, mostramos nossa consistência e evolução ao alcançar o
-                        segundo lugar, reafirmando nosso compromisso com a robótica.</p>
+                    <p>Em <strong>maio de 2025</strong>, participamos da <strong>etapa estadual do FIRA 2025</strong> na
+                        modalidade <strong>Carro Autônomo</strong>, onde mostramos a nossa consistência no
+                        desenvolvimento e na programação de veículos inteligentes, enfrentando desafios de navegação
+                        autônoma com precisão e estratégia. Nosso desempenho garantiu o <strong> 2º
+                            lugar</strong>, destacando nossa equipe entre as melhores do estado e reforçando nosso
+                        compromisso com a <strong>inovação e excelência em robótica</strong>.</p>
                 </div>
             </div>
         </div>
@@ -212,20 +309,34 @@
                 <img style="width: 45%; margin: auto;" src="/Midia/EVENT2.jpg" alt="">
                 <img style="width: 45%; margin: auto;" src="/Midia/EVENT3.jpg" alt="">
                 <div class="event-text">
-                    <p>Realizamos oficinas de robótica para crianças da Ilha de São Luís e participamos de eventos,
-                        levando tecnologia de forma divertida, inclusiva e transformadora.</p>
+                    <p>Realizamos <strong>oficinas de robótica</strong> voltadas para crianças da <strong>Ilha de São
+                            Luís</strong>, com o objetivo de despertar o interesse pela tecnologia desde cedo. Durante
+                        essas atividades, promovemos a <strong>aprendizagem prática e divertida</strong>, utilizando
+                        kits de robótica e dinâmicas interativas que estimulam o raciocínio lógico, a criatividade e o
+                        trabalho em equipe.</p>
+
+                    <p>Também participamos de <strong>eventos educacionais e tecnológicos</strong>, levando a robótica
+                        de forma <strong>inclusiva e transformadora</strong> a diferentes públicos. Acreditamos que
+                        democratizar o acesso ao conhecimento tecnológico é um passo essencial para construir um futuro
+                        mais justo e inovador.</p>
+
                 </div>
             </div>
         </div>
 
         <h2 style="margin-top: 3rem; text-align:center;">📲 Acompanhe a gente no Instagram:<br>
-            <a href="https://instagram.com/t2_maker">
-                <img style="width: 60%; margin: auto 20%;" src="/Midia/INSTA.png" alt="">
+            <a class="align" href="https://instagram.com/t2_maker" target="_blank">
+                <img style="width: 60%;  margin: auto 20% !important;" src="/Midia/INSTA.png" alt="">
             </a>
-            <a href="https://instagram.com/t2_maker" target="_blank" style="color: #764ba2;">@t2_maker</a>
+            <a style="width: 60% !important; margin: 0 20% !important;" href="https://instagram.com/t2_maker"
+                target="_blank">@t2_maker</a>
+            <a style="width: 100% !important; margin: 0 20% !important;" href="https://www.instagram.com/labmaramaker.mtc/"
+                target="_blank">@labmaramaker.mtc</a>
         </h2>
+        <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
     </div>
 
 </body>
+<script async src="//www.instagram.com/embed.js"></script>
 
 </html>
