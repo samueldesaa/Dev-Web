@@ -26,9 +26,10 @@
     }
 
     .container {
+      margin-top: -20px;
       background: #fff;
-      max-width: 900px;
-      width: 100%;
+      /* max-width: 900px; */
+      width: 80%;
       border-radius: 20px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
       padding: 2.5rem;
@@ -247,7 +248,7 @@
   <button class="btn-back" type="button" onclick="window.location.href='index.html'">← Voltar</button>
   <div class="container" role="main" aria-label="Foto grande com QR Codes e chave Pix">
 
-    <div class="photo-container">
+    <div style="width: 80%;" class="photo-container">
       <img src="vaquinha.png" alt="Foto ilustrativa 4 por 3" />
     </div>
 
@@ -270,11 +271,11 @@
         <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
       </div>
       <div class="qr-container" aria-label="Código QR do Instagram" tabindex="0" role="button"
-        onclick="window.open('https://www.instagram.com/t2_maker?igsh=MXZtaTAxdXJkNTJvcg==')"
-        onkeydown="if(event.key==='Enter') window.open('https://www.vakinha.com.br/5435410', '_blank')">
+      onclick="copyPixKey()"
+      onkeydown="if(event.key === 'Enter') copyPixKey()">
         <img
         src="/img/qrcode.jpg"
-          alt="QR Code Instagram" />
+          alt="QR Code PIX" />
         <div class="qr-label">Pix</div>
         <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
       </div>
@@ -283,7 +284,7 @@
         <div class="pix-label">Chave Pix</div>
         <div class="pix-key" tabindex="0" title="Clique para copiar a chave Pix" onclick="copyPixKey()"
           onkeydown="if(event.key === 'Enter') copyPixKey()">
-          5435410@vakinha.com.br
+          98984888321
         </div>
       </div>
       <img style="margin: -30px;" src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">

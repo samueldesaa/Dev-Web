@@ -17,15 +17,14 @@
       filter: drop-shadow(0 0 10px cyan);
       border: 8px solid #888;
       border-radius: 50%;
-      margin-top: 20px;
       width: 90vw;
-      max-width: 600px;
+      max-width: 550px;
       height: auto;
       aspect-ratio: 1 / 1;
     }
 
     .wheel-container {
-      position: relative;
+      position:relative;
       display: inline-block;
     }
 
@@ -98,7 +97,7 @@
       color: white;
       font-size: 3vw;
       margin-bottom: 10px;
-      max-font-size: 32px;
+      /* max-font-size: 32px; */
     }
 
     #confetti {
@@ -128,11 +127,17 @@
     }
 
     @media (max-width: 600px) {
+      
+      .wheel-container{
+        /* top: 50%; */
+        margin-top: 100px !important;
+      }
       #modalContent {
         padding: 20px;
       }
       h1 {
         font-size: 7vw;
+        margin-bottom: 40px;
       }
       #backBtn {
         padding: 0.5rem 1rem;
@@ -228,8 +233,8 @@
         const baseCount = 6;
         const baseSize = 90;
         const minSize = 40;
-        const baseDistanceFactor = 0.6;
-        const minDistanceFactor = 0.5;
+        const baseDistanceFactor = 0.1;
+        const minDistanceFactor = 0.7;
 
         const scaleFactor = Math.sqrt(baseCount / items5.length);
         const size = Math.max(minSize, baseSize * scaleFactor);
@@ -276,7 +281,7 @@
 
         const duration = 12000;
         const minRotations = 8;
-        const maxRotations = 15;
+        const maxRotations = 20;
         const totalRotationDegrees = (Math.random() * (maxRotations - minRotations) + minRotations) * 360;
 
         const start = performance.now();
