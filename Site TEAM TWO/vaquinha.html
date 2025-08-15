@@ -206,12 +206,15 @@
 
     /* Responsividade aprimorada */
     @media (max-width: 700px) {
+      /* img{
+        width: 100% !important;
+      } */
       body {
         padding: 1.5rem 1rem;
       }
 
       .container {
-        padding: 1.5rem 1rem 5rem;
+        padding: 1.5rem 0rem 5rem;
       }
 
       .qr-group {
@@ -228,6 +231,7 @@
 
       .qr-container img {
         width: 100%;
+        padding: 0;
       }
 
       .pix-key {
@@ -247,20 +251,35 @@
 
   <button class="btn-back" type="button" onclick="window.location.href='index.html'">← Voltar</button>
   <div class="container" role="main" aria-label="Foto grande com QR Codes e chave Pix">
-
-    <div style="width: 80%;" class="photo-container">
+<!-- 
+    <div style="width: 60%;" class="photo-container">
       <img src="vaquinha.png" alt="Foto ilustrativa 4 por 3" />
+    </div> -->
+    <div class="pix-section">
+      <div class="pix-label">Chave Pix</div>
+      <div class="pix-key" tabindex="0" title="Clique para copiar a chave Pix" onclick="copyPixKey()"
+        onkeydown="if(event.key === 'Enter') copyPixKey()">
+        98984888321
+      </div>
     </div>
+    <img style="margin: 10px;" src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
 
     <div class="qr-group" aria-label="Códigos QR para Vaquinha e Pix">
-      <div class="qr-container" aria-label="Código QR da Vaquinha" tabindex="0" role="button"
+      <div class="qr-container" aria-label="Código QR do Pix" tabindex="0" role="button" onclick="copyPixKey()"
+        onkeydown="if(event.key === 'Enter') copyPixKey()">
+        <img src="/img/qrcode.jpg" alt="QR Code PIX" />
+        <div class="qr-label">Pix</div>
+        <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
+      </div>
+
+      <!-- <div class="qr-container" aria-label="Código QR da Vaquinha" tabindex="0" role="button"
         onclick="window.open('https://www.vakinha.com.br/5435410')"
         onkeydown="if(event.key==='Enter') window.open('https://www.vakinha.com.br/5435410', '_blank')">
         <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.vakinha.com.br/5435410"
           alt="QR Code Vaquinha" />
         <div class="qr-label">Vaquinha</div>
         <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
-      </div>
+      </div> -->
       <div class="qr-container" aria-label="Código QR do Instagram" tabindex="0" role="button"
         onclick="window.open('https://www.instagram.com/t2_maker?igsh=MXZtaTAxdXJkNTJvcg==')"
         onkeydown="if(event.key==='Enter') window.open('https://www.vakinha.com.br/5435410', '_blank')">
@@ -270,24 +289,6 @@
         <div class="qr-label">Instagram</div>
         <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
       </div>
-      <div class="qr-container" aria-label="Código QR do Instagram" tabindex="0" role="button"
-      onclick="copyPixKey()"
-      onkeydown="if(event.key === 'Enter') copyPixKey()">
-        <img
-        src="/img/qrcode.jpg"
-          alt="QR Code PIX" />
-        <div class="qr-label">Pix</div>
-        <img src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
-      </div>
-
-      <div class="pix-section">
-        <div class="pix-label">Chave Pix</div>
-        <div class="pix-key" tabindex="0" title="Clique para copiar a chave Pix" onclick="copyPixKey()"
-          onkeydown="if(event.key === 'Enter') copyPixKey()">
-          98984888321
-        </div>
-      </div>
-      <img style="margin: -30px;" src="img/maozinha.png" class="mao-indicadora" alt="Clique aqui">
     </div>
 
     <!-- Botão grande fixo -->
