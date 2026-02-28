@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personalizador de Nome</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
+        background-size: 400% 400%;
+        animation: gradientBG 10s ease infinite;
+    }
+    
+    /* Animação do fundo */
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* Sidebar */
+    .sidebar {
+        width: 220px;
+        backdrop-filter: blur(15px);
+        background: rgba(255,255,255,0.2);
+        padding: 20px;
+        box-shadow: 5px 0 20px rgba(0,0,0,0.1);
+        border-right: 1px solid rgba(255,255,255,0.3);
+    }
+    
+    .sidebar h3 {
+        color: rgb(0, 0, 0);
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+    
+    .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+    
+    .color-box {
+        aspect-ratio: 1/1;
+        cursor: pointer;
+        border-radius: 10px;
+        border: 2px solid rgb(255, 255, 255);
+        transition: 0.2s ease;
+    }
+    
+    .color-box:hover {
+        transform: scale(1.15);
+        box-shadow: 0 0 10px rgba(255,255,255,0.8);
+    }
+    
+    /* Área principal */
+    .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    /* Input */
+    input {
+        padding: 12px 20px;
+        font-size: 18px;
+        border-radius: 30px;
+        border: none;
+        outline: none;
+        margin-bottom: 40px;
+        width: min(400px, 90%);
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    /* Nome responsivo */
+    #nome {
+        font-family: 'Pacifico', cursive;
+    
+        /* 🔥 Fonte responsiva automática */
+        font-size: clamp(80px, 12vw, 150px);
+    
+        color: white;
+    
+        /* Stroke responsivo */
+        -webkit-text-stroke: 40px #222;
+    
+        paint-order: stroke fill;
+        text-shadow: 6px 6px 15px rgba(0,0,0,0.3);
+    
+        word-break: break-word;
+        max-width: 100%;
+    }
+    
+    /* 📱 MOBILE */
+    @media (max-width: 768px) {
+    
+        body {
+            flex-direction: column;
+        }
+    
+        .sidebar {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+    
+        .color-grid {
+            grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+            width: 100%;
+            max-width: 500px;
+        }
+    
+        .main {
+            padding: 40px 20px;
+        }
+    
+        input {
+            font-size: 16px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h3>Cor do Texto</h3>
+    <div class="color-grid" id="textColors"></div>
+
+    <h3>Cor do Contorno</h3>
+    <div class="color-grid" id="strokeColors"></div>
+</div>
+
+<div class="main">
+    <input type="text" id="inputNome" placeholder="Digite seu nome">
+    <div id="nome">Samuel</div>
+</div>
+
+<script>
+const textColors = ["white","black","blue","#7a3d00","#21a600", "#bfbbf2", "#ffd6ef","rgba(255, 0, 0, 1)"];
+const strokeColors = textColors
+
+const nome = document.getElementById("nome");
+const input = document.getElementById("inputNome");
+const textContainer = document.getElementById("textColors");
+const strokeContainer = document.getElementById("strokeColors");
+
+/* Atualiza nome automaticamente */
+input.addEventListener("input", () => {
+    nome.textContent = `${input.value}` || "Nome";
+});
+
+/* Cores texto */
+textColors.forEach(color => {
+    const box = document.createElement("div");
+    box.className = "color-box";
+    box.style.backgroundColor = color;
+    box.onclick = () => {
+        nome.style.color = color;
+    };
+    textContainer.appendChild(box);
+});
+
+/* Cores contorno */
+strokeColors.forEach(color => {
+    const box = document.createElement("div");
+    box.className = "color-box";
+    box.style.backgroundColor = color;
+    box.onclick = () => {
+        nome.style.webkitTextStroke = `40px ${color}`;
+    };
+    strokeContainer.appendChild(box);
+});
+</script>
+
+</body>
+</html>
