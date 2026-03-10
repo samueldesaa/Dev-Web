@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Descubra a Imagem</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Arial;
+background:#111;
+color:white;
+text-align:center;
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:10px;
+}
+
+h1{
+margin:10px 0;
+}
+
+#grid{
+margin:15px auto;
+display:grid;
+gap:2px;
+width:min(90vw,90vh);
+height:min(90vw,90vh);
+}
+
+.cell{
+background-size:cover;
+filter:blur(40px);
+transition:filter .5s;
+}
+
+.cell.revealed{
+filter:blur(0);
+}
+
+.buttons{
+margin-top:10px;
+}
+
+button{
+padding:12px 20px;
+margin:5px;
+font-size:16px;
+cursor:pointer;
+border:none;
+border-radius:8px;
+background:#2c2c2c;
+color:white;
+}
+
+button:hover{
+background:#444;
+}
+
+@media (min-width:900px){
+#grid{
+width:85vh;
+height:80vh;
+}
+}
+
+</style>
+</head>
+<body>
+
+<h1>Descubra a Imagem</h1>
+
+<div id="grid"></div>
+
+<div class="buttons">
+<button onclick="unlockRandom()">Desbloquear</button>
+<button onclick="showImage()">Mostrar Imagem</button>
+<button onclick="newGame()">Novo Jogo</button>
+</div>
+
+<script>
+
+// CONFIGURAÇÃO
+const images = [
+"assets/Impressao3D/Bandeja.webp",
+"assets/Impressao3D/Carro_Miniatura.webp",
+"assets/Impressao3D/Elefantinho.webp",
+"assets/Impressao3D/Frango_Decoração.webp",
+"assets/Impressao3D/Gatinho.webp",
+"assets/Impressao3D/Nome_personalizado_para_lapis.webp",
+"assets/Impressao3D/Porta_Doce.webp",
+"assets/Impressao3D/Tom_e_Jerry.webp",
+"assets/Impressao3D/Vasos.webp",
+"assets/Impressao3D/Capacete_gato.webp",
+"assets/Impressao3D/Coelho.webp",
+"assets/Impressao3D/Gato_Decoração.webp",
+"assets/Impressao3D/Homer_Pikachu.webp",
+"assets/Impressao3D/Jarra.webp",
+"assets/Impressao3D/Porta_Canetas.webp"
+]
+
+const rows = 5
+const cols = 5
+
+let order = []
+let index = 0
+let cells = []
+let revealed = new Set()
+
+const grid = document.getElementById("grid")
+
+// Fisher-Yates
+function shuffle(arr){
+
+let a=[...arr]
+
+for(let i=a.length-1;i>0;i--){
+
+let j=Math.floor(Math.random()*(i+1))
+
+let temp=a[i]
+a[i]=a[j]
+a[j]=temp
+
+}
+
+return a
+
+}
+
+function createGrid(){
+
+grid.innerHTML=""
+cells=[]
+revealed.clear()
+
+grid.style.gridTemplateColumns=`repeat(${cols},1fr)`
+grid.style.gridTemplateRows=`repeat(${rows},1fr)`
+
+const image = order[index]
+
+for(let r=0;r<rows;r++){
+for(let c=0;c<cols;c++){
+
+const cell=document.createElement("div")
+
+cell.className="cell"
+
+cell.style.backgroundImage=`url(${image})`
+cell.style.backgroundSize=`${cols*100}% ${rows*100}%`
+
+let x = cols==1 ? 0 : c*(100/(cols-1))
+let y = rows==1 ? 0 : r*(100/(rows-1))
+
+cell.style.backgroundPosition=`${x}% ${y}%`
+
+grid.appendChild(cell)
+
+cells.push(cell)
+
+}
+}
+
+}
+
+function unlockRandom(){
+
+let hidden=cells.filter((_,i)=>!revealed.has(i))
+
+if(hidden.length===0) return
+
+let random=hidden[Math.floor(Math.random()*hidden.length)]
+
+let i=cells.indexOf(random)
+
+cells[i].classList.add("revealed")
+
+revealed.add(i)
+
+}
+
+function showImage(){
+
+cells.forEach((c,i)=>{
+
+c.classList.add("revealed")
+
+revealed.add(i)
+
+})
+
+}
+
+function newGame(){
+
+index++
+
+if(index>=order.length){
+
+order=shuffle(images)
+
+index=0
+
+}
+
+createGrid()
+
+}
+
+function start(){
+
+order=shuffle(images)
+
+createGrid()
+
+}
+
+start()
+
+</script>
+
+</body>
+</html>

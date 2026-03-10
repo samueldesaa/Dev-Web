@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Forca Animada</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+
+font-family:Segoe UI;
+background:linear-gradient(135deg,#3a7bd5,#00d2ff);
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+color:white;
+
+}
+
+#game{
+
+width:95%;
+max-width:1400px;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+}
+
+h1{
+
+font-size:48px;
+margin-bottom:30px;
+
+}
+
+#area{
+
+display:grid;
+grid-template-columns:520px 1fr;
+gap:80px;
+align-items:center;
+
+}
+
+/* FORCA */
+
+canvas{
+
+width:520px;
+height:520px;
+
+background:white;
+
+border-radius:20px;
+
+box-shadow:0 20px 60px rgba(0,0,0,0.4);
+
+}
+
+/* PALAVRA */
+
+#palavra{
+
+font-size:64px;
+letter-spacing:18px;
+margin-bottom:40px;
+text-align:center;
+
+}
+
+/* LETRAS */
+
+#letras{
+
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+max-width:600px;
+
+}
+
+#letras button{
+
+width:60px;
+height:60px;
+
+margin:6px;
+
+border:none;
+border-radius:12px;
+
+font-size:22px;
+font-weight:bold;
+
+cursor:pointer;
+
+background:white;
+color:#333;
+
+transition:.25s;
+
+}
+
+#letras button:hover{
+
+transform:scale(1.2);
+
+}
+
+#letras button:disabled{
+
+background:#ccc;
+transform:scale(0.9);
+
+}
+
+/* mensagem */
+
+#mensagem{
+
+margin-top:30px;
+font-size:32px;
+height:40px;
+
+}
+
+/* LUZ */
+
+#luz{
+
+position:fixed;
+
+width:32px;
+height:32px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,#fff,#00ffff,#008cff);
+
+box-shadow:
+0 0 20px #fff,
+0 0 40px #00ffff,
+0 0 80px #00ffff;
+
+pointer-events:none;
+
+display:none;
+
+}
+
+/* CELULAR */
+
+@media (max-width:900px){
+
+#area{
+
+grid-template-columns:1fr;
+gap:30px;
+
+}
+
+canvas{
+
+width:280px;
+height:280px;
+
+}
+
+#palavra{
+
+font-size:36px;
+letter-spacing:10px;
+
+}
+
+#letras button{
+
+width:44px;
+height:44px;
+font-size:18px;
+
+}
+
+h1{
+
+font-size:32px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="game">
+
+<h1>Jogo da Forca</h1>
+
+<div id="area">
+
+<canvas id="forca" width="520" height="520"></canvas>
+
+<div>
+
+<div id="palavra"></div>
+
+<div id="letras"></div>
+
+</div>
+
+</div>
+
+<div id="mensagem"></div>
+
+</div>
+
+<div id="luz"></div>
+
+<script>
+
+const palavras=[
+"LIVRO",
+"LEITURA",
+"BIBLIOTECA",
+"AUTOR",
+"CAPITULO",
+"PAGINA",
+"ROMANCE",
+"CONTO",
+"POESIA",
+"NARRADOR",
+"ENREDO",
+"PERSONAGEM",
+"HISTORIA",
+"EDITOR",
+"ILUSTRACAO",
+"RESUMO",
+"SINOPSE",
+"FABULA",
+"CRONICA",
+"AVENTURA"
+]
+
+let palavra=""
+let exibicao=[]
+let erros=0
+
+const canvas=document.getElementById("forca")
+const ctx=canvas.getContext("2d")
+
+const luz=document.getElementById("luz")
+
+function iniciar(){
+
+palavra=palavras[Math.floor(Math.random()*palavras.length)]
+
+exibicao=[]
+erros=0
+
+for(let l of palavra)exibicao.push("_")
+
+mostrarPalavra()
+criarTeclado()
+desenhar()
+
+document.getElementById("mensagem").innerText=""
+
+}
+
+function mostrarPalavra(){
+
+document.getElementById("palavra").innerText=exibicao.join(" ")
+
+}
+
+function criarTeclado(){
+
+const letras="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+const div=document.getElementById("letras")
+
+div.innerHTML=""
+
+for(let l of letras){
+
+let btn=document.createElement("button")
+
+btn.innerText=l
+
+btn.onclick=()=>jogar(l,btn)
+
+div.appendChild(btn)
+
+}
+
+}
+
+function jogar(letra,btn){
+
+btn.disabled=true
+
+let acertou=false
+
+for(let i=0;i<palavra.length;i++){
+
+if(palavra[i]==letra){
+
+exibicao[i]=letra
+acertou=true
+
+}
+
+}
+
+animarLuz(btn,acertou)
+
+setTimeout(()=>{
+
+if(!acertou){
+
+erros++
+desenhar()
+
+}
+
+mostrarPalavra()
+verificar()
+
+},2000)
+
+}
+function animarLuz(botao,acertou){
+
+const rect=botao.getBoundingClientRect()
+
+/* centro do botão */
+
+const origemX = rect.left + rect.width/2
+const origemY = rect.top + rect.height/2
+
+luz.style.left = origemX + "px"
+luz.style.top = origemY + "px"
+
+luz.style.display="block"
+
+let destinoRect
+
+if(acertou){
+
+destinoRect = document.getElementById("palavra").getBoundingClientRect()
+
+}else{
+
+destinoRect = canvas.getBoundingClientRect()
+
+}
+
+/* centro do destino */
+
+const destinoX = destinoRect.left + destinoRect.width/2
+const destinoY = destinoRect.top + destinoRect.height/2
+
+const deltaX = destinoX - origemX
+const deltaY = destinoY - origemY
+
+luz.animate([
+
+{ transform:"translate(-50%,-50%) scale(1)" },
+
+{ transform:`translate(${deltaX-16}px,${deltaY-16}px) scale(3)` }
+
+],{
+
+duration:2000,
+easing:"ease-in-out"
+
+})
+
+setTimeout(()=>{
+
+luz.style.display="none"
+
+},2000)
+
+}
+
+function verificar(){
+
+if(!exibicao.includes("_")){
+
+document.getElementById("mensagem").innerText="🎉 Você venceu!"
+
+desativar()
+
+}
+
+if(erros>=6){
+
+document.getElementById("mensagem").innerText="💀 Você perdeu! Palavra: "+palavra
+
+desativar()
+
+}
+
+}
+
+function desativar(){
+
+document.querySelectorAll("#letras button").forEach(b=>b.disabled=true)
+
+}
+
+function desenhar(){
+
+ctx.clearRect(0,0,520,520)
+
+ctx.lineWidth=8
+ctx.strokeStyle="#333"
+
+/* base */
+
+ctx.beginPath()
+ctx.moveTo(80,480)
+ctx.lineTo(400,480)
+ctx.stroke()
+
+/* poste */
+
+ctx.beginPath()
+ctx.moveTo(150,480)
+ctx.lineTo(150,80)
+ctx.lineTo(350,80)
+ctx.lineTo(350,120)
+ctx.stroke()
+
+/* corda */
+
+ctx.beginPath()
+ctx.moveTo(350,120)
+ctx.lineTo(350,150)
+ctx.stroke()
+
+/* boneco */
+
+if(erros>0){
+
+ctx.beginPath()
+ctx.arc(350,185,35,0,Math.PI*2)
+ctx.stroke()
+
+}
+
+if(erros>1){
+
+ctx.beginPath()
+ctx.moveTo(350,220)
+ctx.lineTo(350,320)
+ctx.stroke()
+
+}
+
+if(erros>2){
+
+ctx.beginPath()
+ctx.moveTo(350,250)
+ctx.lineTo(290,300)
+ctx.stroke()
+
+}
+
+if(erros>3){
+
+ctx.beginPath()
+ctx.moveTo(350,250)
+ctx.lineTo(410,300)
+ctx.stroke()
+
+}
+
+if(erros>4){
+
+ctx.beginPath()
+ctx.moveTo(350,320)
+ctx.lineTo(300,400)
+ctx.stroke()
+
+}
+
+if(erros>5){
+
+ctx.beginPath()
+ctx.moveTo(350,320)
+ctx.lineTo(400,400)
+ctx.stroke()
+
+}
+
+}
+
+iniciar()
+
+</script>
+
+</body>
+</html>

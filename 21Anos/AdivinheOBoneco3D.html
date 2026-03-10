@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Descubra a Imagem</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Arial;
+background:#111;
+color:white;
+text-align:center;
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:10px;
+}
+
+h1{
+margin:10px 0;
+}
+
+#grid{
+margin:15px auto;
+display:grid;
+gap:2px;
+width:min(90vw,90vh);
+height:min(90vw,90vh);
+}
+
+.cell{
+background-size:cover;
+filter:blur(40px);
+transition:filter .5s;
+}
+
+.cell.revealed{
+filter:blur(0);
+}
+
+.buttons{
+margin-top:10px;
+}
+
+button{
+padding:12px 20px;
+margin:5px;
+font-size:16px;
+cursor:pointer;
+border:none;
+border-radius:8px;
+background:#2c2c2c;
+color:white;
+}
+
+button:hover{
+background:#444;
+}
+
+@media (min-width:900px){
+#grid{
+width:85vh;
+height:80vh;
+}
+}
+
+</style>
+</head>
+<body>
+
+<h1>Descubra a Imagem</h1>
+
+<div id="grid"></div>
+
+<div class="buttons">
+<button onclick="unlockRandom()">Desbloquear</button>
+<button onclick="showImage()">Mostrar Imagem</button>
+<button onclick="newGame()">Novo Jogo</button>
+</div>
+
+<script>
+
+// CONFIGURAÇÃO
+const images = [
+"assets/Bonecos3D/Franciele.png",
+"assets/Bonecos3D/Jamily.png",
+"assets/Bonecos3D/Kaillane.png",
+"assets/Bonecos3D/Matheus.png",
+"assets/Bonecos3D/Michelle.png"
+]
+
+const rows = 5
+const cols = 5
+
+let order = []
+let index = 0
+let cells = []
+let revealed = new Set()
+
+const grid = document.getElementById("grid")
+
+// Fisher-Yates
+function shuffle(arr){
+
+let a=[...arr]
+
+for(let i=a.length-1;i>0;i--){
+
+let j=Math.floor(Math.random()*(i+1))
+
+let temp=a[i]
+a[i]=a[j]
+a[j]=temp
+
+}
+
+return a
+
+}
+
+function createGrid(){
+
+grid.innerHTML=""
+cells=[]
+revealed.clear()
+
+const imageSrc = order[index]
+
+const img = new Image()
+
+img.onload = () => {
+
+const ratio = img.height / img.width
+
+const maxHeight = window.innerHeight * 0.85
+const maxWidth = window.innerWidth * 0.9
+
+let height = maxHeight
+let width = height / ratio
+
+if(width > maxWidth){
+width = maxWidth
+height = width * ratio
+}
+
+grid.style.width = width + "px"
+grid.style.height = height + "px"
+
+grid.style.gridTemplateColumns=`repeat(${cols},1fr)`
+grid.style.gridTemplateRows=`repeat(${rows},1fr)`
+
+for(let r=0;r<rows;r++){
+for(let c=0;c<cols;c++){
+
+const cell=document.createElement("div")
+
+cell.className="cell"
+
+cell.style.backgroundImage=`url(${imageSrc})`
+cell.style.backgroundSize=`${cols*100}% ${rows*100}%`
+
+const x = (c/(cols-1))*100
+const y = (r/(rows-1))*100
+
+cell.style.backgroundPosition=`${x}% ${y}%`
+
+grid.appendChild(cell)
+
+cells.push(cell)
+
+}
+}
+
+}
+
+img.src = imageSrc
+
+}
+
+function unlockRandom(){
+
+let hidden=cells.filter((_,i)=>!revealed.has(i))
+
+if(hidden.length===0) return
+
+let random=hidden[Math.floor(Math.random()*hidden.length)]
+
+let i=cells.indexOf(random)
+
+cells[i].classList.add("revealed")
+
+revealed.add(i)
+
+}
+
+function showImage(){
+
+cells.forEach((c,i)=>{
+
+c.classList.add("revealed")
+
+revealed.add(i)
+
+})
+
+}
+
+function newGame(){
+
+index++
+
+if(index>=order.length){
+
+order=shuffle(images)
+
+index=0
+
+}
+
+createGrid()
+
+}
+
+function start(){
+
+order=shuffle(images)
+
+createGrid()
+
+}
+
+start()
+
+</script>
+
+</body>
+</html>
